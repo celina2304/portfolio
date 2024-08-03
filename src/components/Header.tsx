@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import icon from "../assets/react.svg";
 import pages from "../constants/pages";
 
@@ -8,12 +9,12 @@ export default function Header() {
         <div className="flex items-center justify-between p-5">
           <img src={icon} alt="icon" />
           <ul className="flex items-center justify-between gap-2">
-            {pages.map((item, index) => {
+            {pages.map((page, index) => {
               return (
-                <li key={`header-item${item.title}_${index}`}>
-                  <a href={item.path}>
-                    <div>{item.title}</div>
-                  </a>
+                <li key={`header-page${page.title}_${index}`}>
+                  <Link to={page.path}>
+                    <div>{page.title}</div>
+                  </Link>
                 </li>
               );
             })}
