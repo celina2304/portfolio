@@ -8,7 +8,7 @@ export default function Header() {
       <nav>
         <div className="flex items-center justify-between p-5">
           <img src={icon} alt="icon" />
-          <ul className="flex items-center justify-between gap-2">
+          <ul className="flex items-center justify-between gap-5">
             {pages.map((page, index) => {
               return (
                 <li key={`header-page${page.title}_${index}`}>
