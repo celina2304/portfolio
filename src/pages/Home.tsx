@@ -1,5 +1,11 @@
+import HeroSection from "../components/Home/HeroSection";
+import Cards from "../components/ui/Cards";
+
 export default function Home() {
   return (
-    <div className="h-[100vh] w-[100vw] bg-lilac text-blue-500 ">HomePage</div>
+    <>
+      <HeroSection />
+      <Cards />
+    </>
   );
 }

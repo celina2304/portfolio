@@ -1,0 +1,11 @@
+export const LINKS = {
+  GITHUB: "https://github.com/celina2304",
+  LINKEDIN: "https://www.linkedin.com/in/celina-a3bb18190/",
+  PERSONAL_WEBSITE: "https://celina-portfolio.netlify.app/",
+  VERCEL: "",
+  PROJECTS: {
+    TASKY: "",
+  }
+} as const;
+
+export type LinkKeys = keyof typeof LINKS;
