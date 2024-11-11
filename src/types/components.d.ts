@@ -28,6 +28,13 @@ export interface projectCardProps {
     bg?: string;
 }
 
+export interface chevronProps {
+    cls?: string;
+    fill?: string;
+    stroke?: string;
+    strokeWidth?: string;
+}
+
 export interface ballProps {
     active: { row: number, col: number },
     setActive: function,

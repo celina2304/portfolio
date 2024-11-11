@@ -12,7 +12,8 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const baseStyles = "px-4 py-2 font-semibold rounded shadow";
   const variantStyles = {
-    primary: "text-green_yellow bg-jet border-[1.5px] border-green_yellow",
+    primary:
+      "text-green_yellow bg-jett-black border-[1.5px] border-green_yellow",
     secondary: "text-white bg-lilac hover:bg-gray-700",
     dark_primary: "bg-blue-500 hover:bg-blue-700",
     dark_secondary: "text-white bg-gray-500 hover:bg-gray-700",

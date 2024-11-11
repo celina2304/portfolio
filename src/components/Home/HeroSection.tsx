@@ -1,10 +1,16 @@
-export default function HeroSection() {
+const HeroSection: React.FC = () => {
   return (
-    <div className="bg-jet">
-      <div className="w-[55%] py-56 px-20 text-5xl text-white">
-        hello my name is celina
+    <section className="p-section-xl h-[90vh] my-auto">
+      <div className="flex items-center justify-center gap-10">
+        {/* <div className="uppercase px-10 text-tusker-heading font-tusker text-green_yellow">
+          Hello! <br />I am celina
+        </div> */}
+        <div className="uppercase px-10 text-tusker-heading font-tusker text-stroke-green_yellow-DEFAULT">
+          Hello! <br />I am ROBOT XD
+        </div>
       </div>
-      <div className="w-[45%]"></div>
-    </div>
+    </section>
   );
-}
+};
+
+export default HeroSection;

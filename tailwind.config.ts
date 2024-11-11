@@ -5,8 +5,9 @@ const config: Config = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}' ],
   theme: {
     extend: {
-      // 363635 - 595a4a - b0fe76 - 81e979 - 8fbb99
       colors: {
+        // 363635 - 595a4a - b0fe76 - 81e979 - 8fbb99
+        "jett-black": "#000",
         "jet": { 
           DEFAULT: '#363635',
           100: '#0b0b0b', 
@@ -62,10 +63,42 @@ const config: Config = {
           700: '#bdd6c3', 
           800: '#d3e4d7', 
           900: '#e9f1eb' } 
+      },
+      fontFamily: {
+        tusker: ['TuskerGrotesk', 'sans-serif'], 
+        quicksand: ['Quicksand', 'sans-serif'], 
+        poppins: ['Poppins', 'sans-serif']
+      },
+      fontSize: {
+        'tusker-heading': ['120px', { lineHeight: '125px' }],
+        'tusker-subheading': ['100px', { lineHeight: '115px', letterSpacing: '0.01rem' }],
+      },
+      padding: {
+        'section-xl': '50px',
       }
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities, theme, e }) {
+      const colors = theme('colors');
+      const strokeColors = Object.keys(colors).reduce((acc, color) => {
+        const colorShades = colors[color];
+        if (typeof colorShades === 'object') {
+          Object.keys(colorShades).forEach(shade => {
+            const className = `.text-stroke-${e(`${color}-${shade}`)}`;
+            const colorValue = colorShades[shade];
+            acc[className] = {
+              '-webkit-text-stroke': `2px ${colorValue}`,
+              'color': 'transparent',
+            };
+          });
+        }
+        return acc;
+      }, {});
+
+      addUtilities(strokeColors, ['responsive', 'hover']);
+    },
+  ],
 }
 
 export default config;

@@ -1,11 +1,13 @@
 import HeroSection from "../components/Home/HeroSection";
-import Cards from "../components/ui/Cards";
+import AboutSection from "../components/Home/AboutSection";
+import ProjectSection from "../components/Home/ProjectsSection";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <Cards />
+      <AboutSection />
+      <ProjectSection />
     </>
   );
 }

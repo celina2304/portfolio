@@ -7,7 +7,7 @@ import { LINKS } from "../constants/links";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 left-0 bg-blend-color-burn text-green_yellow">
+    <header className="sticky top-0 left-0 z-50 bg-blend-color-burn text-green_yellow font-medium uppercase">
       <nav className="bg-jet">
         <div className="flex items-center justify-between p-4 shadow-md">
           <Link to="/">
@@ -24,11 +24,11 @@ export default function Header() {
               );
             })}
           </ul>
-          <div className="flex items-center justify-end gap-5">
+          <div className="flex items-center justify-end gap-5 text-sm">
             {/* dark mode vs light mode 
             <Switch /> */}
             <Link to={LINKS.GITHUB}>
-              <Button onClick={() => {}} type="button" label="Github link" />
+              <Button onClick={() => {}} type="button" label="GITHUB ->" />
             </Link>
           </div>
         </div>

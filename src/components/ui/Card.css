@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card_animation{
+  animation: card_animation 0.5s linear;
+}
+
+@keyframes card_animation {
+  0%{
+    transform:  translateY(0);
+  }
+  100%{
+    transform:  translateY(-500%);
+  }
+}
