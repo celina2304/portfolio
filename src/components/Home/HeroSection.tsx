@@ -97,7 +97,7 @@ const HeroSection: React.FC = () => {
           }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
           // className={`${baseClass.base} ${baseClass.left}`}
-          className="absolute h-[100vh] w-[50vw] top-0 -z-20 left-0"
+          className="absolute h-[100vh] w-[50vw]  top-0 -z-20 left-0"
         ></motion.div>
         <motion.div
           style={{
