@@ -1,10 +1,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
-import bg1 from "../../assets/images/waves1.svg";
-import bg2 from "../../assets/images/waves2.svg";
-import bg3 from "../../assets/images/waves3.svg";
-import bg4 from "../../assets/images/waves4.svg";
+// import bg1 from "../../assets/images/waves1.svg";
+// import bg2 from "../../assets/images/waves2.svg";
+// import bg3 from "../../assets/images/waves3.svg";
+// import bg4 from "../../assets/images/waves4.svg";
 import useScrollTracking from "../../hooks/useScrollInsideSection";
 import CircularPathText from "../ui/CircularPathText";
 import { useState } from "react";
@@ -74,7 +74,7 @@ const HeroSection: React.FC = () => {
         <motion.div
           style={{
             backgroundColor: "transparent",
-            backgroundImage: `url(${bg3})`,
+            backgroundImage: `url('/images/waves3.svg')`,
             backgroundSize: "cover",
             backgroundPosition: "left top",
             color: "black",
@@ -88,7 +88,7 @@ const HeroSection: React.FC = () => {
         <motion.div
           style={{
             backgroundColor: "transparent",
-            backgroundImage: `url(${bg4})`,
+            backgroundImage: `url('/images/waves4.svg')`,
             backgroundSize: "cover",
             backgroundPosition: "right top",
             color: "black",
@@ -102,7 +102,7 @@ const HeroSection: React.FC = () => {
         <motion.div
           style={{
             backgroundColor: "transparent",
-            backgroundImage: `url(${bg1})`,
+            backgroundImage: `url('/images/waves1.svg')`,
             backgroundSize: "cover",
             backgroundPosition: "right",
             color: "black",
@@ -119,7 +119,7 @@ const HeroSection: React.FC = () => {
         <motion.div
           style={{
             backgroundColor: "transparent",
-            backgroundImage: `url(${bg2})`,
+            backgroundImage: `url('/images/waves2.svg')`,
             backgroundSize: "cover",
             backgroundPosition: "left",
             zIndex: 20,
