@@ -3,14 +3,20 @@
 @tailwind utilities;
 
 .card_animation{
-  animation: card_animation 0.5s linear;
+  animation: card_animation 1s linear;
 }
 
 @keyframes card_animation {
   0%{
     transform:  translateY(0);
   }
+  /* 40%{
+    transform:  translateY(-240%);
+  } */
+  /* 60%{
+    transform:  translateY(-300%);
+  } */
   100%{
-    transform:  translateY(-500%);
+    transform:  translateY(-400%);
   }
 }

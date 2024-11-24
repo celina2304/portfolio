@@ -30,7 +30,7 @@ const Button: React.FC<ButtonProps> = ({
         } ${className}  -translate-x-1 -translate-y-1 hover:translate-x-0 hover:translate-y-0 transition-transform`}
       >
         {label}
-        <div className="h-full w-full -z-10"></div>
+        {/* <div className="h-full w-full -z-10"></div> */}
       </button>
     </div>
   );

@@ -21,11 +21,18 @@ export interface ButtonProps {
     variant?: 'primary' | 'secondary' | 'dark_primary' | "dark_secondary";
   }
 
-// project car props
+// project card props
+export interface projectCardDetails {
+    id: string;
+    images: string[];
+    heading: string;
+    description: string;
+    points: string[];
+    skills: string[];
+    link: string;
+}
 export interface projectCardProps {
-    height?: string;
-    width?: string;
-    bg?: string;
+    projectDetails: projectCardDetails;
 }
 
 export interface chevronProps {
@@ -33,6 +40,13 @@ export interface chevronProps {
     fill?: string;
     stroke?: string;
     strokeWidth?: string;
+}
+
+export interface CirclePathTextProps {
+    text?: string;
+    color?: string;
+    cls?: string;
+    direction?: string;
 }
 
 export interface ballProps {

@@ -2,6 +2,7 @@ import { chevronProps } from "../../types/components";
 
 const Chevron: React.FC<chevronProps> = (props) => {
   const { cls, fill, stroke, strokeWidth } = props;
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

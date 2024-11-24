@@ -8,8 +8,12 @@ import Projects from "./pages/Projects";
 import Resume from "./pages/Resume";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
+import useScrollTracking from "./hooks/useScrollTracking";
+import useWindowDimensions from "./hooks/useWindowDimensions";
 
-function App() {
+const App: React.FC = () => {
+  useScrollTracking(); // track scroll position
+  useWindowDimensions(); // track browser dimensions
   return (
     <Theme>
       <BrowserRouter>
@@ -25,6 +29,6 @@ function App() {
       </BrowserRouter>
     </Theme>
   );
-}
+};
 
 export default App;

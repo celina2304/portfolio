@@ -48,8 +48,8 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: theme('colors.jet.DEFAULT');
-  border: 1px solid theme('colors.green_yellow.DEFAULT');
+  background: #000;
+  /* border: 1px solid theme('colors.green_yellow.DEFAULT'); */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -59,5 +59,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: theme('colors.green_yellow.300');
 }
-
-/* radix themes */
