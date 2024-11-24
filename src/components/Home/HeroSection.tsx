@@ -1,10 +1,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
-import bg1 from "../../assets/images/layered-waves-haikei1.svg";
-import bg2 from "../../assets/images/layered-waves-haikei2.svg";
-import bg3 from "../../assets/images/layered-waves-haikei3.svg";
-import bg4 from "../../assets/images/layered-waves-haikei4.svg";
+import bg1 from "../../assets/images/waves1.svg";
+import bg2 from "../../assets/images/waves2.svg";
+import bg3 from "../../assets/images/waves3.svg";
+import bg4 from "../../assets/images/waves4.svg";
 import useScrollTracking from "../../hooks/useScrollInsideSection";
 import CircularPathText from "../ui/CircularPathText";
 import { useState } from "react";
