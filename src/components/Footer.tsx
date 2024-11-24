@@ -1,5 +1,4 @@
 import bg from "../assets/images/layered-steps-haikei.svg";
-import bg1 from "../assets/images/layered-steps-haikei1.svg";
 
 const footerList = [
   {
