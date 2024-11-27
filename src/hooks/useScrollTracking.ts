@@ -1,19 +1,22 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setScrollY } from '../redux/window/scrollSlice';
-import { RootState } from '../redux/store';
+import { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { setScrollY, setScrollDirection } from '../redux/window/scrollSlice';
+// import { RootState } from '../redux/store';
 
 const useScrollTracking = () => {
   const dispatch = useDispatch();
-  const scrollY = useSelector((state: RootState) => state.scroll.scrollY);
-
-  useEffect(() => {
-    // console.log("Current Scroll Y Position: ", scrollY);
-  }, [scrollY]);
+  // const scrollY = useSelector((state: RootState) => state.scroll.scrollY);
+  const previousScrollY = useRef<number>(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      dispatch(setScrollY(window.scrollY));
+      const currentScrollY = window.scrollY;
+      dispatch(setScrollY(currentScrollY));
+
+      const direction = currentScrollY > previousScrollY.current ? 'down' : 'up';
+      dispatch(setScrollDirection(direction));
+
+      previousScrollY.current = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -22,6 +25,10 @@ const useScrollTracking = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   // console.log("Current Scroll Y Position: ", scrollY);
+  // }, [scrollY]);
 };
 
 export default useScrollTracking;

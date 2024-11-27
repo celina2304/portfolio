@@ -1,25 +1,27 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setScrollPosition, setScrollY } from '../redux/window/scrollSlice';
+import { setScrollPosition } from '../redux/window/scrollSlice';
 import { RootState } from '../redux/store';
 
+interface useScrollToNextSectionProps {
+  scrollStart: number | undefined;
+  scrollEnd: number |undefined;
+}
 
-const useScrollTracking = (section:string) => {
+const useScrollToNextSection = ({scrollStart,scrollEnd}:useScrollToNextSectionProps) => {
     const dispatch = useDispatch();
     const scrollPosition = useSelector((state: RootState) => state.scroll.scrollPosition);
     const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
+    if(scrollStart ==undefined || scrollEnd == undefined) return;
     const handleScroll = () => {
       if (isAnimating) return;
     
       let start = 0, end = 0;
       const currentScroll = window.scrollY;
-      const windowHeight = window.innerHeight;
-      if(section === "hero"){
-        start=0;
-        end = windowHeight*2;
-      }
+      start = scrollStart;
+      end=scrollEnd;
 
       if (currentScroll > start && currentScroll < end) {
         if (currentScroll > scrollPosition) {
@@ -28,8 +30,6 @@ const useScrollTracking = (section:string) => {
           scrollToSection(start);
         }
       }
-
-      // console.log("current scroll is ", currentScroll);
       dispatch(setScrollPosition(currentScroll))
     };
 
@@ -37,7 +37,7 @@ const useScrollTracking = (section:string) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [scrollPosition, isAnimating, dispatch, section]);
+  }, [scrollPosition, isAnimating, dispatch, scrollStart,scrollEnd]);
 
   const scrollToSection = (position: number) => {
     setIsAnimating(true);
@@ -48,20 +48,8 @@ const useScrollTracking = (section:string) => {
 
     setTimeout(() => {
       setIsAnimating(false);
-    }, 500); // Set a delay matching the smooth scrolling duration
+    }, 500); 
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      dispatch(setScrollY(window.scrollY));
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [dispatch]);
 };
 
-export default useScrollTracking;
+export default useScrollToNextSection;

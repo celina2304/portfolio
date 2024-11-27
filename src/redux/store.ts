@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import scrollReducer from './window/scrollSlice'
+import sectionScrollReducer from './window/sectionScrollSlice'
 import dimensionsReducer from './window/dimensionsSlice'
 
 const store = configureStore({
   reducer: {
     scroll: scrollReducer,
-    dimensions: dimensionsReducer
+    dimensions: dimensionsReducer,
+    sectionScroll: sectionScrollReducer
   }
 })
 

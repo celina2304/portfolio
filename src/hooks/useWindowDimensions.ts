@@ -4,6 +4,7 @@ import { setDimensions } from '../redux/window/dimensionsSlice';
 
 const useWindowDimensions = () => {
   const dispatch = useDispatch();
+  
   useEffect(() => {
     const handleResize = () => {
       dispatch(setDimensions({ innerHeight: window.innerHeight, innerWidth: window.innerWidth }));

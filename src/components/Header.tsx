@@ -6,10 +6,12 @@ import { LINKS } from "../constants/links";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { easeInOut, motion } from "framer-motion";
+import MobileNav from "./ui/MobileNav";
 // import Switch from "../components/ui/Switch";
 
 export default function Header() {
   const scroll = useSelector((state: RootState) => state.scroll.scrollY);
+  // const scroll = window.scrollY;
   const innerHeight = useSelector(
     (state: RootState) => state.dimensions.innerHeight
   );
@@ -18,13 +20,13 @@ export default function Header() {
       className={`${
         scroll <= innerHeight
           ? ""
-          : "backdrop-blur-sm border-b border-green_yellow"
-      } bg-transparent sticky top-0 left-0 z-50 font-medium uppercase flex items-center justify-between p-4`}
+          : "backdrop-blur-sm md:border-b md:border-green_yellow"
+      } bg-transparent sticky md:h-auto top-0 left-0 z-[100] font-medium uppercase flex items-center justify-between md:p-4`}
     >
-      <Link to="/">
+      <Link to="/" className="hidden md:block">
         <img src={icon} alt="icon" />
       </Link>
-      <ul className="bg-transparent  flex items-center justify-between gap-5">
+      <ul className="hidden md:flex bg-transparent items-center justify-between gap-5">
         {pages.map((page, index) => {
           return (
             <li
@@ -45,11 +47,11 @@ export default function Header() {
                     duration: 0.7 + 0.1 * index,
                     ease: easeInOut,
                   }}
-                  className={`${
+                  className={`underline-animation ${
                     scroll <= innerHeight * 1.5
-                      ? "text-black"
-                      : "text-green_yellow bg-transp arent"
-                  } bg-transparent`}
+                      ? "text-black underline-black"
+                      : "text-green_yellow underline-green_yellow"
+                  } bg-transparent relative`}
                 >
                   {page.title}
                 </motion.div>
@@ -69,7 +71,7 @@ export default function Header() {
           duration: 0.7,
           ease: easeInOut,
         }}
-        className="flex items-center justify-end gap-5 text-sm"
+        className="hidden md:flex items-center justify-end gap-5 text-sm"
       >
         {/* dark mode vs light mode 
             <Switch /> */}
@@ -77,6 +79,8 @@ export default function Header() {
           <Button onClick={() => {}} type="button" label="GITHUB ->" />
         </Link>
       </motion.div>
+
+      <MobileNav pages={pages} />
     </header>
   );
 }

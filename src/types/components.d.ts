@@ -18,7 +18,7 @@ export interface ButtonProps {
     type?: 'button' | 'submit' | 'reset';
     disabled?: boolean;
     className?: string;
-    variant?: 'primary' | 'secondary' | 'dark_primary' | "dark_secondary";
+    variant?: 'primary' |  'light_primary'  | 'dark_primary' | "dark_secondary";
   }
 
 // project card props
@@ -33,6 +33,7 @@ export interface projectCardDetails {
 }
 export interface projectCardProps {
     projectDetails: projectCardDetails;
+    index?: number;
 }
 
 export interface chevronProps {
@@ -56,4 +57,8 @@ export interface ballProps {
     rowIndex: number,
     x: MotionValue<number>,
     y: MotionValue<number>
+}
+
+export interface FunctionalComponentProps {
+    id: string;
 }

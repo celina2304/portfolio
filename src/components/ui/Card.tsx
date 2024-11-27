@@ -4,44 +4,50 @@ import { projectCardProps } from "../../types/components";
 import "./Card.css";
 
 export const Card: React.FC<projectCardProps> = (props) => {
-  const { projectDetails } = props;
+  const { projectDetails, index = 1 } = props;
 
   return (
     <motion.div
-      whileHover={{
-        scale: 1.02,
-        boxShadow: "0px 0px 13px 3px #b0fe76",
+      key={`project-card${index}`}
+      initial={{
+        y: 50,
+        opacity: 0,
+      }}
+      whileInView={{
+        y: 0,
+        opacity: 1,
       }}
       transition={{
-        type: "spring",
-        stiffness: 300, // Increased stiffness for faster transition
-        damping: 20, // Reduced damping for snappier effect
+        duration: 0.5,
+        delay: (index + 1) * 0.1, // Delay applied only when the element is in view
       }}
-      className={`relative flex flex-col max-w-sm border-2 border-green_yellow `}
+      className={`min-h-full`}
     >
-      <img
-        className="w-full border-b-2 border-green_yellow"
-        src="https://tailwindcss.com/img/card-top.jpg"
-        alt="Sunset in the mountains"
-      />
-      <div className="p-3 relative flex flex-col flex-grow overflow-hidden">
-        <div
-          className={`font-bold font-tusker uppercase text-xl bg-green_yellow relative z-30 mb-2 bg-clip-text text-transparent`}
-        >
-          {projectDetails.heading}
+      <div className="cursor-pointer hover:scale-[1.01] duration-200 ease-in-out hover:shadow-projectCard relative min-h-full flex flex-col max-w-sm border-2 border-green_yellow">
+        <img
+          className="w-full border-b-2 border-green_yellow"
+          src="https://tailwindcss.com/img/card-top.jpg"
+          alt="Sunset in the mountains"
+        />
+        <div className="p-3 relative flex flex-col flex-grow overflow-hidden">
+          <div
+            className={`font-bold font-tusker uppercase text-xl bg-green_yellow relative z-30 mb-2 bg-clip-text text-transparent`}
+          >
+            {projectDetails.heading}
+          </div>
+          <p
+            className={`bg-green_yellow relative z-20 bg-clip-text text-sm text-transparent`}
+          >
+            {projectDetails.description}
+          </p>
         </div>
-        <p
-          className={`bg-green_yellow relative z-20 bg-clip-text text-sm text-transparent`}
-        >
-          {projectDetails.description}
-        </p>
-      </div>
-      <div className="p-3 flex gap-2 items-center justify-start ">
-        {projectDetails.skills.map((skill) => (
-          <span className="bg-green_yellow text-black rounded-md p-1 text-xs font-semibold">
-            {skill}
-          </span>
-        ))}
+        <div className="p-3 flex gap-2 items-center flex-wrap justify-start ">
+          {projectDetails.skills.map((skill,skillIndex) => (
+            <span key={`project-card${index}-skill${skillIndex}`} className="bg-green_yellow text-black rounded-md p-1 text-xs font-semibold">
+              {skill}
+            </span>
+          ))}
+        </div>
       </div>
     </motion.div>
   );

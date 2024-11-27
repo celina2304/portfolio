@@ -71,12 +71,19 @@ const config: Config = {
       },
       fontSize: {
         'tusker-heading': ['120px', { lineHeight: '135px' }],
+        'tusker-heading-mobile': ['50px', { lineHeight: '55px' }],
         'tusker-home-text': ['63px', {lineHeight: '65px'}],
+        'tusker-home-text-mobile': ['43px', {lineHeight: '60px'}],
+        'tusker-home-text-mobile2': ['43px', {lineHeight: '40px'}],
         'tusker-subheading': ['100px', { lineHeight: '115px', letterSpacing: '0.01rem' }],
         'tusker-subheading2': ['70px', { lineHeight: '105px', letterSpacing: '0.01rem' }],
         'tusker-card-heading': ['40px', { lineHeight: '55px', letterSpacing: '0.01rem' }],
       },
       padding: {
+        'section-xl': '50px',
+        'section-mobile': '20px',
+      },
+      margin: {
         'section-xl': '50px',
       },
       backgroundClip: {
@@ -122,6 +129,31 @@ const config: Config = {
       addUtilities(strokeColors, ['responsive', 'hover']);
       addUtilities(strokeColors2, ['responsive', 'hover']);
     },
+    function ({ addUtilities, theme }) {
+      const colors = theme('colors');
+      const customProperties = Object.keys(colors).reduce((acc, color) => {
+        const colorShades = colors[color];
+        if (typeof colorShades === 'string') {
+          // For simple color values
+          acc[`:root`] = {
+            ...acc[`:root`],
+            [`--color-${color}`]: colorShades,
+          };
+        } else if (typeof colorShades === 'object') {
+          // For shades of a color
+          Object.keys(colorShades).forEach(shade => {
+            acc[`:root`] = {
+              ...acc[`:root`],
+              [`--color-${color}-${shade}`]: colorShades[shade],
+            };
+          });
+        }
+        return acc;
+      }, { ':root': {} });
+    
+      addUtilities(customProperties, ['responsive']);
+    },
+    
   ],
 }
 

@@ -14,13 +14,17 @@ const Button: React.FC<ButtonProps> = ({
   const variantStyles = {
     primary:
       "text-green_yellow bg-jett-black border-[1.5px] border-green_yellow",
-    secondary: "text-white bg-lilac hover:bg-gray-700",
+    light_primary: "text-black bg-green_yellow border-[1.5px] border-black",
     dark_primary: "bg-blue-500 hover:bg-blue-700",
     dark_secondary: "text-white bg-gray-500 hover:bg-gray-700",
   };
   const disabledStyles = "bg-gray-400 cursor-not-allowed";
   return (
-    <div className="relative bg-green_yellow rounded">
+    <div
+      className={`rounded ${variant === "primary" ? "bg-green_yellow" : ""} ${
+        variant === "light_primary" ? "bg-black" : ""
+      } `}
+    >
       <button
         type={type}
         onClick={onClick}

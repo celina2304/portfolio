@@ -59,3 +59,31 @@
 ::-webkit-scrollbar-thumb:hover {
   background: theme('colors.green_yellow.300');
 }
+
+.underline-animation:after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: var(--underline-color, theme('colors.green_yellow.DEFAULT'));
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
+}
+
+.underline-animation:focus:after,
+.underline-animation:hover:after {
+  width: 100%;
+  left: 0%;
+}
+
+.underline-animation.underline-green_yellow::after {
+  --underline-color: theme('colors.green_yellow.DEFAULT');
+}
+
+.underline-animation.underline-black::after {
+  --underline-color: theme('colors.black'); 
+}

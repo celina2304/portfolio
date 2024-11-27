@@ -3,7 +3,12 @@ import { CirclePathTextProps } from "../../types/components";
 import { useEffect, useState } from "react";
 
 const CircularPathText: React.FC<CirclePathTextProps> = (props) => {
-  const { text, color = "#b0fe76", cls, direction = "left" } = props;
+  const {
+    text,
+    color = "var(--color-green_yellow-DEFAULT)",
+    cls,
+    direction = "left",
+  } = props;
   const [derivedDirection, setDerivedDirection] = useState<string>(direction);
 
   useEffect(() => {
@@ -20,7 +25,7 @@ const CircularPathText: React.FC<CirclePathTextProps> = (props) => {
       }}
     >
       <svg
-        className="bg-transparent absolute w-full h-full scale-[0.8]"
+        className="bg-transparent absolute w-full h-full scale-[0.5] md:scale-[0.8]"
         viewBox="0 0 100 100"
         xmlns="http://www.w3.org/2000/svg"
       >
