@@ -80,6 +80,7 @@ const config: Config = {
         'tusker-card-heading': ['40px', { lineHeight: '55px', letterSpacing: '0.01rem' }],
       },
       padding: {
+        'section-2xl': '200px',
         'section-xl': '50px',
         'section-mobile': '20px',
       },

@@ -7,9 +7,9 @@ const SkillsSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   return (
     <section
       id={id}
-      className="p-section-mobile md:p-section-xl md:h-[100vh] relative text-green_yellow"
+      className="p-section-mobile md:p-section-xl 2xl:p-section-2xl  md:h-[100vh] relative text-green_yellow"
     >
-      <div className="text-center bg-transparent font-tusker uppercase text-tusker-home-text-mobile md:text-tusker-subheading2 px-2 text-green_yellow">
+      <div className="text-center bg-transparent font-tusker uppercase text-tusker-home-text-mobile md:text-tusker-subheading2 2xl:text-tusker-heading 2xl:pb-10 px-2 text-green_yellow">
         Skills I have
       </div>
       <br />
@@ -18,7 +18,7 @@ const SkillsSection: React.FC<FunctionalComponentProps> = ({ id }) => {
           return (
             <div
               key={`skill-${skillIndex}-${skill}`}
-              className="hover:scale-[1.05] hover:transition-transform hover:ease-in-out duration-100 cursor-pointer hover:text-black border hover:bg-green_yellow border-green_yellow p-5 flex flex-wrap items-center justify-center md:text-2xl font-semibold"
+              className="hover:scale-[1.05] hover:transition-transform hover:ease-in-out duration-100 cursor-pointer hover:text-black border hover:bg-green_yellow border-green_yellow p-5 flex flex-wrap items-center justify-center md:text-2xl 2xl:text-tusker-card-heading font-semibold"
             >
               {skill}
             </div>

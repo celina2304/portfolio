@@ -23,7 +23,7 @@ export const Card: React.FC<projectCardProps> = (props) => {
       }}
       className={`min-h-full`}
     >
-      <div className="cursor-pointer hover:scale-[1.01] duration-200 ease-in-out hover:shadow-projectCard relative min-h-full flex flex-col max-w-sm border-2 border-green_yellow">
+      <div className="cursor-pointer hover:scale-[1.01] duration-200 ease-in-out hover:shadow-projectCard relative min-h-full flex flex-col max-w-sm 2xl:max-w-screen-2xl border-2 border-green_yellow">
         <img
           className="w-full border-b-2 border-green_yellow"
           src="https://tailwindcss.com/img/card-top.jpg"
@@ -31,19 +31,22 @@ export const Card: React.FC<projectCardProps> = (props) => {
         />
         <div className="p-3 relative flex flex-col flex-grow overflow-hidden">
           <div
-            className={`font-bold font-tusker uppercase text-xl bg-green_yellow relative z-30 mb-2 bg-clip-text text-transparent`}
+            className={`font-bold font-tusker uppercase text-xl 2xl:text-tusker-home-text-mobile bg-green_yellow relative z-30 mb-2 bg-clip-text text-transparent`}
           >
             {projectDetails.heading}
           </div>
           <p
-            className={`bg-green_yellow relative z-20 bg-clip-text text-sm text-transparent`}
+            className={`bg-green_yellow relative z-20 bg-clip-text text-sm 2xl:text-3xl text-transparent`}
           >
             {projectDetails.description}
           </p>
         </div>
         <div className="p-3 flex gap-2 items-center flex-wrap justify-start ">
-          {projectDetails.skills.map((skill,skillIndex) => (
-            <span key={`project-card${index}-skill${skillIndex}`} className="bg-green_yellow text-black rounded-md p-1 text-xs font-semibold">
+          {projectDetails.skills.map((skill, skillIndex) => (
+            <span
+              key={`project-card${index}-skill${skillIndex}`}
+              className="bg-green_yellow text-black rounded-md 2xl:text-3xl p-1 text-xs font-semibold"
+            >
               {skill}
             </span>
           ))}

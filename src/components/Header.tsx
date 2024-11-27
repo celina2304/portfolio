@@ -21,7 +21,7 @@ export default function Header() {
         scroll <= innerHeight
           ? ""
           : "backdrop-blur-sm md:border-b md:border-green_yellow"
-      } bg-transparent sticky md:h-auto top-0 left-0 z-[100] font-medium uppercase flex items-center justify-between md:p-4`}
+      } bg-transparent sticky md:h-auto top-0 left-0 z-[100] font-medium uppercase flex items-center justify-between md:p-4 2xl:p-10`}
     >
       <Link to="/" className="hidden md:block">
         <img src={icon} alt="icon" />
@@ -51,7 +51,7 @@ export default function Header() {
                     scroll <= innerHeight * 1.5
                       ? "text-black underline-black"
                       : "text-green_yellow underline-green_yellow"
-                  } bg-transparent relative`}
+                  } bg-transparent 2xl:text-3xl relative`}
                 >
                   {page.title}
                 </motion.div>

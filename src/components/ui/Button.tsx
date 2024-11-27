@@ -10,7 +10,7 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   variant = "primary",
 }) => {
-  const baseStyles = "px-4 py-2 font-semibold rounded shadow";
+  const baseStyles = "px-4 py-2 font-semibold rounded shadow 2xl:text-2xl";
   const variantStyles = {
     primary:
       "text-green_yellow bg-jett-black border-[1.5px] border-green_yellow",

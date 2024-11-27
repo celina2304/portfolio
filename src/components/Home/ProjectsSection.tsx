@@ -53,7 +53,7 @@ const projectsData = [
 
 const ProjectSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   const scroll = useSelector((state: RootState) => state.scroll.scrollY);
-  const { innerWidth } = useSelector((state: RootState) => state.dimensions);
+  // const { innerWidth } = useSelector((state: RootState) => state.dimensions);
   const sectionDetails = useSelector(
     (state: RootState) => state.sectionScroll.sections
   );
@@ -68,29 +68,26 @@ const ProjectSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         scroll <= currentSection.endPosition + currentSection.sectionHeight
       ) {
         const baseScroll = currentSection.sectionHeight;
-        const effectiveScroll =
-          innerWidth <= 400
-            ? (scroll - baseScroll) / 7
-            : (scroll - baseScroll) / 5;
+        const effectiveScroll = (scroll - baseScroll) / 7;
 
         setTranslateVal(`translateY(${effectiveScroll}px)`);
       }
     };
     calculateTranslateVal();
-  }, [currentSection, scroll, innerWidth]);
+  }, [currentSection, scroll]);
 
   return (
     <section
       id={id}
-      className="p-section-mobile md:p-section-xl relative overflow-x-clip overflow-y-visible text-green_yellow"
+      className="p-section-mobile md:p-section-xl 2xl:p-section-2xl  relative overflow-x-clip overflow-y-visible text-green_yellow"
     >
       <div className="relative bg-transparent z-20">
-        <span className="bg-transparent font-tusker uppercase text-tusker-home-text-mobile md:text-tusker-subheading2 md:px-2 ">
+        <span className="bg-transparent font-tusker uppercase text-tusker-home-text-mobile md:text-tusker-subheading2 2xl:text-tusker-heading md:px-2 ">
           Projects I've worked on
           <ArrowRightIcon className="h-[80px] fill-green_yellow bg-transparent w-auto inline" />
         </span>
         <br />
-        <div className="bg-transparent grid grid-rows-4 md:grid-cols-4 gap-5 mt-5 md:mt-12">
+        <div className="bg-transparent grid grid-rows-4 md:grid-rows-none md:grid-cols-4 gap-5 mt-5 md:mt-12">
           {projectsData.map((project, projectIndex) => {
             return (
               <Card
@@ -115,7 +112,7 @@ const ProjectSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         style={{
           transform: `${translateVal} scale(1.6) `,
         }}
-        className="absolute -top-[150px] md:-top-[300px] -right-5 md:right-16 z-10 w-[100px] h-[100px] bg-transparent"
+        className="absolute -top-[50vw] sm:-top-[90vw] md:-top-[60vw] lg:-top-[60vw] xl:-top-[20vw] -right-5 md:right-16 z-10 w-[100px] h-[100px] bg-transparent"
       >
         <Blob variant={1} />
       </div>
@@ -123,7 +120,7 @@ const ProjectSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         style={{
           transform: `${translateVal} scale(1.6) `,
         }}
-        className="absolute bottom-[450px] md:bottom-[500px] -left-[200px] md:-left-16 z-10 w-[100px] h-[100px] bg-transparent"
+        className="absolute bottom-[140vw] sm:bottom-[100vw] md:bottom-[90vw] lg:bottom-[70vw] xl:bottom-[30vw] -left-[200px] md:-left-16 z-10 w-[100px] h-[100px] bg-transparent"
       >
         <Blob variant={2} />
       </div>

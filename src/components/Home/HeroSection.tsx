@@ -68,7 +68,10 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   };
 
   return (
-    <section id={id} className="-mt-[75px] relative h-[310vh] w-full">
+    <section
+      id={id}
+      className="-mt-[75px] 2xl:-mt-[140px] relative h-[310vh] w-full"
+    >
       {/* Sticky container */}
       <div className="sticky bg-transparent top-0 z-20 h-[100vh] overflow-hidden flex">
         <motion.div
@@ -148,7 +151,7 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         id="hero-description"
         className={`h-[110vh] md:h-[100vh] relative ${
           scrollY > innerHeight * 2 ? "z-30" : ""
-        } p-section-mobile md:p-section-xl flex items-center justify-center text-6xl text-green_yellow overflow-hidden`}
+        } p-section-mobile md:p-section-xl 2xl:p-section-2xl 2xl:w-[70%] 2xl:mx-auto flex items-center justify-center text-6xl text-green_yellow overflow-hidden`}
       >
         <div className="md:pt-16 font-tusker text-tusker-home-text-mobile md:text-tusker-home-text md:leading-[90px]">
           A{" "}

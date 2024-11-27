@@ -8,9 +8,11 @@ import { RootState } from "../../redux/store";
 
 const cardClassnames = {
   card: "border-2 border-green_yellow p-5 h-full font-medium text-sm",
-  cardSubHeading: "font-semibold text-base",
-  cardHeading: "font-tusker text-tusker-card-heading uppercase",
-  cardDescription: "mt-5",
+  cardSubHeading:
+    "font-semibold text-base 2xl:text-tusker-card-heading 2xl:pb-10",
+  cardHeading:
+    "font-tusker text-tusker-card-heading 2xl:text-tusker-heading uppercase",
+  cardDescription: "mt-5 2xl:text-tusker-card-heading",
 };
 
 const ContactMeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
@@ -38,18 +40,18 @@ const ContactMeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   return (
     <section id={id} className="bg-transparent relative text-green_yellow">
       <div
-        className="sticky top-0 h-[110vh] md:h-[100vh] bg-cover -z-10"
+        className="sticky top-0 h-[100vh] bg-cover -z-10"
         style={{ backgroundImage: `url(${myImage})` }}
       ></div>
-      <div className="h-[100vh] bg-transparent flex items-start bg-cover justify-center font-tusker uppercase text-center text-tusker-subheading px-2 text-stroke2-green_yellow-DEFAULT">
+      <div className="h-[100vh] bg-transparent flex items-start bg-cover justify-center font-tusker uppercase text-center text-tusker-subheading px-2 text-stroke2-green_yellow-DEFAULT 2xl:text-tusker-heading">
         NEED TO DROP A CALL?
       </div>
-      <div className="h-[110vh] md:h-[100vh] pb-section-xl bg-transparent m-auto px-section-xl grid grid-cols-1">
+      <div className="h-[100vh] pb-section-xl bg-transparent m-auto px-section-xl 2xl:p-section-2xl grid grid-cols-1 md:grid-cols-none">
         <div className="border-2  border-green_yellow grid grid-cols-1 md:grid-cols-10 h-full bg-transparent">
-          <div className="border-2 border-green_yellow col-span-1 md:col-span-4 flex items-center justify-center h-full font-tusker text-tusker-home-text-mobile md:text-tusker-subheading2 p-5">
+          <div className="2xl:text-tusker-heading border-2 border-green_yellow col-span-1 md:col-span-4 flex items-center justify-center h-full font-tusker text-tusker-home-text-mobile md:text-tusker-subheading2 p-5 2xl:p-[100px]">
             Here's my contact info
           </div>
-          <div className="col-span-1 md:col-span-6 grid grid-rows-4 md:grid-cols-2">
+          <div className="col-span-1 md:col-span-6 grid grid-rows-4 md:grid-rows-none md:grid-cols-2">
             <div className={cardClassnames.card}>
               <div className={cardClassnames.cardSubHeading}>Have a doubt?</div>
               <div className="">

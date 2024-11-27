@@ -14,12 +14,14 @@ const PdfViewer = () => {
   );
   return (
     <Document className={"bg-transparent"} file={resume}>
-      <Page
-        width={innerWidth * 0.8}
-        renderAnnotationLayer={false}
-        renderTextLayer={false}
-        pageNumber={1}
-      />
+      {innerWidth && (
+        <Page
+          width={innerWidth <= 400 ? innerWidth * 0.8 : 500}
+          renderAnnotationLayer={false}
+          renderTextLayer={false}
+          pageNumber={1}
+        />
+      )}
     </Document>
   );
 };
