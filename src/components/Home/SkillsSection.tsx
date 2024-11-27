@@ -1,8 +1,8 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { FunctionalComponentProps } from "../../types/components";
 // import Button from "../ui/Button";
 
-const skills = ["React.js", "Next.js", "Tailwind CSS", "Node.js", "Express.js"];
+// const skills = ["React.js", "Next.js", "Tailwind CSS", "Node.js", "Express.js"];
 
 const skillSet = [
   {
