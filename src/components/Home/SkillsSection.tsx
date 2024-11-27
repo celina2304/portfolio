@@ -54,7 +54,7 @@ const skillSet = [
 ];
 
 const SkillsSection: React.FC<FunctionalComponentProps> = ({ id }) => {
-  const [activeSkill, setActiveSkill] = useState<number>(-1);
+  // const [activeSkill, setActiveSkill] = useState<number>(-1);
 
   return (
     <section
