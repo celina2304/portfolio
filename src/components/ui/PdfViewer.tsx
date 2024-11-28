@@ -9,20 +9,23 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 const PdfViewer = () => {
+  // const []
   const innerWidth = useSelector(
     (state: RootState) => state.dimensions.innerWidth
   );
   return (
-    <Document className={"bg-transparent"} file={resume}>
+    <>
       {innerWidth && (
-        <Page
-          width={innerWidth <= 400 ? innerWidth * 0.8 : 500}
-          renderAnnotationLayer={false}
-          renderTextLayer={false}
-          pageNumber={1}
-        />
+        <Document className={"bg-transparent"} file={resume}>
+          <Page
+            width={innerWidth <= 450 ? innerWidth * 0.7 : 500}
+            renderAnnotationLayer={false}
+            renderTextLayer={false}
+            pageNumber={1}
+          />
+        </Document>
       )}
-    </Document>
+    </>
   );
 };
 

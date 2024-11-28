@@ -33,7 +33,10 @@ const Footer: React.FC = () => {
       />
       <div className="p-section-mobile py-section-xl md:p-section-xl 2xl:p-section-2xl flex items-center justify-between  bg-transparent">
         <div className="cursor-pointer font-tusker uppercase text-tusker-home-text-mobile md:text-tusker-subheading2 bg-transparent text-black">
-          celina <br /> portfolio
+          <img
+            src="/images/portfoliologo-black.svg"
+            className="bg-transparent h-[15vw]"
+          />
         </div>
         <div className="flex flex-col gap-2 md:gap-3 items-center justify-center bg-transparent">
           {footerList.map((item) => (

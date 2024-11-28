@@ -78,7 +78,7 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
           style={{
             backgroundColor: "transparent",
             backgroundImage:
-              innerWidth <= 400
+              innerWidth <= 450
                 ? `url('/images/waves3-mob.svg')`
                 : `url('/images/waves3.svg')`,
             backgroundSize: "cover",
@@ -94,7 +94,7 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
           style={{
             backgroundColor: "transparent",
             backgroundImage:
-              innerWidth <= 400
+              innerWidth <= 450
                 ? `url('/images/waves4-mob.svg')`
                 : `url('/images/waves4.svg')`,
             backgroundSize: "cover",
@@ -110,7 +110,7 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
           style={{
             backgroundColor: "transparent",
             backgroundImage:
-              innerWidth <= 400
+              innerWidth <= 450
                 ? `url('/images/waves1-mob.svg')`
                 : `url('/images/waves1.svg')`,
             backgroundSize: "cover",
@@ -129,7 +129,7 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
           style={{
             backgroundColor: "transparent",
             backgroundImage:
-              innerWidth <= 400
+              innerWidth <= 450
                 ? `url('/images/waves2-mob.svg')`
                 : `url('/images/waves2.svg')`,
             backgroundSize: "cover",
