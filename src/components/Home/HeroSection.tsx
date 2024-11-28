@@ -146,7 +146,7 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
           <MainMotionText text="CELINA" delay={0.25} />
         </motion.div>
       </div>
-      <div className="h-[100vh]"></div>
+      <div className="h-[100vh] "></div>
       <div
         id="hero-description"
         className={`h-[110vh] md:h-[100vh] relative ${
