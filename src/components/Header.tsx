@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import icon from "../assets/react.svg";
+// import icon from "../assets/react.svg";
 import pages from "../constants/pages";
 import Button from "./ui/Button";
 import { LINKS } from "../constants/links";
@@ -21,10 +21,14 @@ export default function Header() {
         scroll <= innerHeight
           ? ""
           : "backdrop-blur-sm md:border-b md:border-green_yellow"
-      } bg-transparent sticky md:h-auto top-0 left-0 z-[100] font-medium uppercase flex items-center justify-between md:p-4 2xl:p-10`}
+      } bg-transparent sticky md:h-auto top-0 left-0 z-[100] font-medium uppercase flex items-center justify-between md:p-2 2xl:p-10`}
     >
-      <Link to="/" className="hidden md:block">
-        <img src={icon} alt="icon" />
+      <Link to="/" className="hidden md:block bg-transparent pl-5">
+        <img
+          src="/images/portfoliologo.png"
+          alt="icon"
+          className="h-[50px] w-auto bg-transparent"
+        />
       </Link>
       <ul className="hidden md:flex bg-transparent items-center justify-between gap-5">
         {pages.map((page, index) => {

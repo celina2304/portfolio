@@ -70,7 +70,7 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   return (
     <section
       id={id}
-      className="-mt-[75px] 2xl:-mt-[140px] relative h-[310vh] w-full"
+      className="-mt-[85px] 2xl:-mt-[140px] relative h-[310vh] w-full"
     >
       {/* Sticky container */}
       <div className="sticky bg-transparent top-0 z-20 h-[100vh] overflow-hidden flex">
