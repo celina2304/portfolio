@@ -11,10 +11,7 @@ import MobileNav from "./ui/MobileNav";
 
 export default function Header() {
   const scroll = useSelector((state: RootState) => state.scroll.scrollY);
-  // const scroll = window.scrollY;
-  const innerHeight = useSelector(
-    (state: RootState) => state.dimensions.innerHeight
-  );
+  const innerHeight = useSelector((state: RootState) => state.dimensions.innerHeight);
   return (
     <header
       className={`${
@@ -31,38 +28,36 @@ export default function Header() {
         />
       </Link>
       <ul className="hidden md:flex bg-transparent items-center justify-between gap-5">
-        {pages.map((page, index) => {
-          return (
-            <li
-              key={`header-page${page.title}_${index}`}
-              className="bg-transparent"
-            >
-              <Link to={page.path}>
-                <motion.div
-                  initial={{
-                    y: 150,
-                    opacity: 0,
-                  }}
-                  animate={{
-                    y: 0,
-                    opacity: 1,
-                  }}
-                  transition={{
-                    duration: 0.7 + 0.1 * index,
-                    ease: easeInOut,
-                  }}
-                  className={`underline-animation ${
-                    scroll <= innerHeight * 1.5
-                      ? "text-black underline-black"
-                      : "text-green_yellow underline-green_yellow"
-                  } bg-transparent 2xl:text-3xl relative`}
-                >
-                  {page.title}
-                </motion.div>
-              </Link>
-            </li>
-          );
-        })}
+        {pages?.map((page, index) => (
+          <li
+            key={`header-page${page.title}_${index}`}
+            className="bg-transparent"
+          >
+            <Link to={page.path}>
+              <motion.div
+                initial={{
+                  y: 150,
+                  opacity: 0,
+                }}
+                animate={{
+                  y: 0,
+                  opacity: 1,
+                }}
+                transition={{
+                  duration: 0.7 + 0.1 * index,
+                  ease: easeInOut,
+                }}
+                className={`underline-animation ${
+                  scroll <= innerHeight * 1.5
+                    ? "text-black underline-black"
+                    : "text-green_yellow underline-green_yellow"
+                } bg-transparent 2xl:text-3xl relative`}
+              >
+                {page.title}
+              </motion.div>
+            </Link>
+          </li>
+        ))}
       </ul>
       <motion.div
         initial={{
@@ -84,7 +79,7 @@ export default function Header() {
         </Link>
       </motion.div>
 
-      <MobileNav pages={pages} />
+      <MobileNav pages={pages || []} />
     </header>
   );
 }

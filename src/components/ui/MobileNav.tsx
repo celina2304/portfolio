@@ -102,7 +102,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
           variants={menuItemVariants}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          key={`menu-item-mobile-head`}
+          key={`menu-item-mobile-head-logo`}
         >
           <div
             className={`${
@@ -112,14 +112,14 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
             CELINA
           </div>
         </motion.li>
-        {pages.map((i) => {
+        {pages.map((i, pageIndex) => {
           return (
             <motion.li
               className="cursor-pointer bg-transparent"
               variants={menuItemVariants}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              key={`menu-item-mobile-${i}`}
+              key={`menu-item-mobile-${pageIndex}`}
             >
               <div
                 className={`${
@@ -134,7 +134,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
         <motion.li
           className="cursor-pointer bg-transparent"
           variants={menuItemVariants}
-          key={`menu-item-mobile-head`}
+          key={`menu-item-mobile-head-github-button`}
         >
           <Link to={LINKS.GITHUB} className="flex items-center bg-transparent">
             <Button

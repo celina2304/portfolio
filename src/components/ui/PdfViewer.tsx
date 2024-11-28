@@ -18,6 +18,13 @@ const PdfViewer = () => {
       {innerWidth && (
         <Document className={"bg-transparent"} file={resume}>
           <Page
+            // width={
+            //   innerWidth <= 450
+            //     ? innerWidth <= 320
+            //       ? innerWidth * 0.6
+            //       : innerWidth * 0.7
+            //     : 500
+            // }
             width={innerWidth <= 450 ? innerWidth * 0.7 : 500}
             renderAnnotationLayer={false}
             renderTextLayer={false}

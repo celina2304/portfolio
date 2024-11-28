@@ -78,6 +78,7 @@ const config: Config = {
         'tusker-subheading': ['100px', { lineHeight: '115px', letterSpacing: '0.01rem' }],
         'tusker-subheading2': ['70px', { lineHeight: '105px', letterSpacing: '0.01rem' }],
         'tusker-card-heading': ['40px', { lineHeight: '55px', letterSpacing: '0.01rem' }],
+        'tusker-contact-mobile': ['35px', {lineHeight: '45px'}],
       },
       padding: {
         'section-2xl': '200px',
@@ -92,6 +93,9 @@ const config: Config = {
       },
       boxShadow: {
         projectCard: "0px 0px 13px 3px #b0fe76"
+      },
+      screens: {
+        xs: "420px" 
       }
     },
   },
