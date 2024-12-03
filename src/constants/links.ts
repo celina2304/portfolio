@@ -1,6 +1,9 @@
 export const LINKS = {
   GITHUB: "https://github.com/celina2304",
   LINKEDIN: "https://www.linkedin.com/in/celina-a3bb18190/",
+  INSTAGRAM: "https://www.instagram.com/celiinna__/",
+  FACEBOOK: "",
+  DISCORD: "",
   PERSONAL_WEBSITE: "https://celina-portfolio.netlify.app/",
   VERCEL: "",
   PROJECTS: {

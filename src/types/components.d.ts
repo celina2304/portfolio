@@ -4,6 +4,7 @@ export interface Page {
     path: string;
     title: string;
     description: string;
+    scroll?: string;
 }
 
 export interface Link {

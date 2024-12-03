@@ -1,8 +1,17 @@
 import { FunctionalComponentProps } from "../../types/components";
 import Button from "../ui/Button";
 import PdfViewer from "../ui/PdfViewer";
+import resume from "../../assets/pdfs/resume.pdf";
 
 const ResumeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = resume; 
+    link.download = "celina-resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <section
       id={id}
@@ -18,13 +27,7 @@ const ResumeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         </div>
         <div className="p-10">
           <div className="flex items-center justify-center">
-            <Button
-              onClick={() => {
-                // navigate("/projects")
-              }}
-              type="button"
-              label="View more"
-            />
+            <Button onClick={handleDownload} type="button" label="Download" />
           </div>
         </div>
       </div>

@@ -9,7 +9,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 const PdfViewer = () => {
-  // const []
   const innerWidth = useSelector(
     (state: RootState) => state.dimensions.innerWidth
   );

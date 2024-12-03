@@ -1,7 +1,14 @@
 // import Button from "../ui/Button";
 import React from "react";
-import myImage from "../../assets/images/low-poly-grid-haikei.svg";
 import { FunctionalComponentProps } from "../../types/components";
+import { Link } from "react-router-dom";
+import { LINKS } from "../../constants/links";
+import myImage from "../../assets/images/low-poly-grid-haikei.svg";
+import linkedin from "../../assets/icons/linkedin.svg";
+import instagram from "../../assets/icons/instagram.svg";
+import facebook from "../../assets/icons/facebook.svg";
+import discord from "../../assets/icons/discord.svg";
+import github from "../../assets/icons/github.svg";
 // import useScrollToNextSection from "../../hooks/useScrollInsideSection";
 // import { useSelector } from "react-redux";
 // import { RootState } from "../../redux/store";
@@ -71,17 +78,17 @@ const ContactMeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
                 Need to contact?
               </div>
               <div className="">
-                <span className={cardClassnames.cardHeading}>DROP A CALL</span>{" "}
+                <span className={cardClassnames.cardHeading}>DROP A TEXT</span>{" "}
                 on
               </div>
-              <div
-                className={`${cardClassnames.cardDescription} cursor-pointer`}
-                onClick={() => {
-                  console.log("Replace this button with sending email");
-                }}
-              >
-                +91 8708095735
-              </div>
+              <Link to={LINKS.LINKEDIN} target="_blank">
+                <div
+                  className={`${cardClassnames.cardDescription} text-lg cursor-pointer flex items-center justify-start gap-1`}
+                >
+                  Linked
+                  <img src={linkedin} alt="" className="h-10 w-auto" />
+                </div>
+              </Link>
             </div>
             <div className={cardClassnames.card}>
               <div className={cardClassnames.cardSubHeading}>Add me on</div>
@@ -90,13 +97,29 @@ const ContactMeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
               </div>
               <div className={`${cardClassnames.cardDescription}`}>
                 <div className="flex gap-3">
-                  <span>instg</span>
-                  <span>discord</span>
-                  <span>linkedin</span>
+                  <Link to={LINKS.INSTAGRAM} target="_blank">
+                    <img src={instagram} alt="" className="h-10 w-auto" />
+                  </Link>
+                  <Link to={LINKS.FACEBOOK} target="_blank">
+                    <img src={facebook} alt="" className="h-10 w-auto" />
+                  </Link>
+                  <Link to={LINKS.DISCORD} target="_blank">
+                    <img src={discord} alt="" className="h-10 w-auto" />
+                  </Link>
                 </div>
               </div>
             </div>
-            <div className={cardClassnames.card}>anything else</div>
+            <div className={cardClassnames.card}>
+              <div className={cardClassnames.cardSubHeading}>Visit my</div>
+              <div className="">
+                <span className={cardClassnames.cardHeading}>GITHUB PROFILE</span>
+              </div>
+              <div className={`${cardClassnames.cardDescription}`}>
+                  <Link to={LINKS.GITHUB} target="_blank">
+                    <img src={github} alt="" className="h-10 w-auto" />
+                  </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

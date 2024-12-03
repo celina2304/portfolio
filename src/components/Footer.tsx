@@ -1,22 +1,26 @@
-const footerList = [
-  {
-    heading: "About",
-  },
-  {
-    heading: "Contact",
-  },
-  {
-    heading: "Resume",
-  },
-  {
-    heading: "Projects",
-  },
-  {
-    heading: "Hobbies",
-  },
-];
+// const footerList = [
+//   {
+//     heading: "About",
+//   },
+//   {
+//     heading: "Contact",
+//   },
+//   {
+//     heading: "Resume",
+//   },
+//   {
+//     heading: "Projects",
+//   },
+//   {
+//     heading: "Hobbies",
+//   },
+// ];
+
+import pages from "../constants/pages";
+import useScrollToSection from "../hooks/useScrollToSection";
 
 const Footer: React.FC = () => {
+  const scrollToSection = useScrollToSection();
   return (
     <footer className="relative bg-transparent overflow-y-visible overflow-x-hidden">
       <img
@@ -39,12 +43,13 @@ const Footer: React.FC = () => {
           />
         </div>
         <div className="flex flex-col gap-2 md:gap-3 items-center justify-center bg-transparent">
-          {footerList.map((item) => (
+          {pages.map((item) => (
             <div
-              key={`${item.heading}footer-item`}
+              key={`${item.title}footer-item`}
+              onClick={() => scrollToSection(item.scroll || "")}
               className="w-full text-right cursor-pointer text-xs md:text-base 2xl:text-3xl relative underline-animation underline-black bg-transparent text-black font-semibold"
             >
-              {item.heading}
+              {item.title}
             </div>
           ))}
         </div>

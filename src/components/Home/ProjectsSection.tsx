@@ -1,7 +1,7 @@
 import { Card } from "../ui/Card";
 // import project1 from "../../assets/images/projects/project1.png";
 import project2 from "../../assets/images/projects/project2.png";
-import Button from "../ui/Button";
+// import Button from "../ui/Button";
 import { ArrowRightIcon } from "@heroicons/react/16/solid";
 // import { motion } from "framer-motion";
 import Blob from "../ui/Blob";
@@ -16,38 +16,40 @@ const projectsData = [
     images: [project2],
     heading: "Book my show clone",
     description:
-      "It is a replica of the popular online ticket booking platform, BookMyShow.",
+      "It is a replica of the popular online ticket booking platform, BookMyShow. User authentication and authorization implemented. Razorpay integration included.",
     skills: ["ReactJS", "Tailwind CSS", "Razorpay API"],
     points: ["", "", ""],
-    link: "",
+    link: "https://github.com/celina2304/Book-My-Show-Clone-TS",
   },
   {
     id: "",
     images: [project2],
-    heading: "projects data",
+    heading: "Book Hive",
     description:
-      "It is a replica of the popular online ticket booking platform, BookMyShow. lorem ipson lorem lorem ipson loremlorem ipson loremlorem ipson lorem.",
-    skills: ["ReactJS", "Tailwind CSS", "Razorpay API"],
+      "This program is designed to assist school libraries in managing and handling books efficiently. The project leverages APIs to integrate external book-related services, enhancing the book discovery experience for users.",
+    skills: ["Node.js", "Express.js", "MongoDB"],
     points: ["", "", ""],
-    link: "",
+    link: "https://github.com/celina2304/BookHive",
   },
   {
     id: "",
     images: [project2],
-    heading: "",
-    description: "",
-    skills: ["ReactJS", "NodeJS", "Razorpay API"],
+    heading: "Tasky",
+    description:
+      "It is a simple yet powerful application for managing tasks and to-do lists. It provides an intuitive user interface to create, update, and track tasks, helping users stay organized and focused on their priorities.",
+    skills: ["HTML", "CSS", "JavaScript"],
     points: ["", "", ""],
-    link: "",
+    link: "https://github.com/celina2304/Tasky",
   },
   {
     id: "",
     images: [project2],
-    heading: "",
-    description: "",
-    skills: ["ReactJS", "NodeJS", "Razorpay API"],
+    heading: "Zomato clone Frontend",
+    description:
+      " The clone allows users to explore restaurants, view menus, place food orders, and track deliveries in real-time. It can also integrate additional features tailored to specific business requirements.",
+    skills: ["Reactjs", "MongoDB", "Expressjs"],
     points: ["", "", ""],
-    link: "",
+    link: "https://github.com/celina2304/zomato-master",
   },
 ];
 
@@ -99,13 +101,13 @@ const ProjectSection: React.FC<FunctionalComponentProps> = ({ id }) => {
           })}
         </div>
         <div className="pt-10 bg-transparent flex items-center justify-center">
-          <Button
+          {/* <Button
             onClick={() => {
               // navigate("/projects")
             }}
             type="button"
             label="View more"
-          />
+          /> */}
         </div>
       </div>
       <div
