@@ -36,7 +36,7 @@ export const Card: React.FC<projectCardProps> = (props) => {
             {projectDetails.heading}
           </div>
           <p
-            className={`bg-green_yellow relative z-20 bg-clip-text text-xs 2xl:text-3xl text-transparent`}
+            className={`bg-green_yellow relative z-20 bg-clip-text text-xs 2xl:text-2xl text-transparent`}
           >
             {projectDetails.description}
           </p>

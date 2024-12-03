@@ -35,11 +35,11 @@ const Footer: React.FC = () => {
         src={"./images/layered-steps-haikei-mob-2.svg"}
         className="w-full bottom-0 absolute md:hidden -z-10"
       />
-      <div className="p-section-mobile py-section-xl md:p-section-xl 2xl:p-section-2xl flex items-center justify-between  bg-transparent">
-        <div className="cursor-pointer font-tusker uppercase text-tusker-home-text-mobile md:text-tusker-subheading2 bg-transparent text-black">
+      <div className="p-section-mobile py-section-xl md:p-section-xl flex items-center justify-between  bg-transparent">
+        <div className="cursor-pointer font-tusker 2xl:p-section-xl uppercase text-tusker-home-text-mobile md:text-tusker-subheading2 bg-transparent text-black">
           <img
             src="/images/portfoliologo-black.svg"
-            className="bg-transparent h-[15vw]"
+            className="bg-transparent h-[15vw] 2xl:h-[5vw]"
           />
         </div>
         <div className="flex flex-col gap-2 md:gap-3 items-center justify-center bg-transparent">

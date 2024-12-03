@@ -15,10 +15,9 @@ import github from "../../assets/icons/github.svg";
 
 const cardClassnames = {
   card: "border-2 border-green_yellow p-3 xs:p-5 h-full font-medium text-sm",
-  cardSubHeading:
-    "font-semibold text-base 2xl:text-tusker-card-heading 2xl:pb-10",
+  cardSubHeading: "font-semibold text-base 2xl:text-tusker-contact-mobile ",
   cardHeading:
-    "font-tusker text-tusker-contact-mobile xs:text-tusker-card-heading 2xl:text-tusker-heading uppercase",
+    "font-tusker text-tusker-contact-mobile xs:text-tusker-card-heading 2xl:text-tusker-subheading2 uppercase",
   cardDescription: "mt-5 2xl:text-tusker-card-heading",
 };
 
@@ -53,8 +52,8 @@ const ContactMeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
       <div className="h-[50vh] xs:h-[100vh] bg-transparent flex items-start bg-cover justify-center font-tusker uppercase text-center text-tusker-card-heading xs:text-tusker-subheading px-2 text-stroke2-green_yellow-DEFAULT 2xl:text-tusker-heading">
         NEED TO DROP A CALL?
       </div>
-      <div className="h-[100vh] pb-section-xl bg-transparent m-auto px-section-mobile md:px-section-xl 2xl:p-section-2xl grid grid-cols-1 md:grid-cols-none">
-        <div className="border-2  border-green_yellow grid grid-cols-1 md:grid-cols-10 h-full bg-transparent">
+      <div className="h-[100vh] pb-section-xl bg-transparent m-auto px-section-mobile md:px-section-xl 2xl:px-section-2xl grid grid-cols-1 md:grid-cols-none">
+        <div className="h-full 2xl:h-[90vh] border-2 border-green_yellow grid grid-cols-1 md:grid-cols-10 bg-transparent">
           <div className="2xl:text-tusker-heading border-2 border-green_yellow col-span-1 md:col-span-4 flex items-center justify-center h-full font-tusker text-tusker-contact-mobile xs:text-tusker-home-text-mobile md:text-tusker-subheading2 p-5 2xl:p-[100px]">
             Here's my contact info
           </div>
@@ -112,12 +111,14 @@ const ContactMeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
             <div className={cardClassnames.card}>
               <div className={cardClassnames.cardSubHeading}>Visit my</div>
               <div className="">
-                <span className={cardClassnames.cardHeading}>GITHUB PROFILE</span>
+                <span className={cardClassnames.cardHeading}>
+                  GITHUB PROFILE
+                </span>
               </div>
               <div className={`${cardClassnames.cardDescription}`}>
-                  <Link to={LINKS.GITHUB} target="_blank">
-                    <img src={github} alt="" className="h-10 w-auto" />
-                  </Link>
+                <Link to={LINKS.GITHUB} target="_blank">
+                  <img src={github} alt="" className="h-10 w-auto" />
+                </Link>
               </div>
             </div>
           </div>

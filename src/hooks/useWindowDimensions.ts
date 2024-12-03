@@ -8,7 +8,7 @@ const useWindowDimensions = () => {
   useEffect(() => {
     const handleResize = () => {
       dispatch(setDimensions({ innerHeight: window.innerHeight, innerWidth: window.innerWidth }));
-      console.log("new height: ",window.innerHeight, ", new width: ",window.innerWidth)
+      // console.log("new height: ",window.innerHeight, ", new width: ",window.innerWidth)
     };
 
     handleResize();

@@ -6,6 +6,7 @@ import { Page } from "../../types/components";
 import { Link } from "react-router-dom";
 import { LINKS } from "../../constants/links";
 import Button from "./Button";
+import useScrollToSection from "../../hooks/useScrollToSection";
 
 const navigationVariants = {
   open: {
@@ -75,10 +76,20 @@ const Path: React.FC<PathProps> = (props) => (
 );
 
 const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
+  const scrollToSection = useScrollToSection();
   const { innerHeight } = useSelector((state: RootState) => state.dimensions);
   const { scrollY } = useSelector((state: RootState) => state.scroll);
   const [isOpen, toggleOpen] = useCycle(false, true);
   const colorVal = scrollY <= innerHeight;
+
+  const handleItemClick = (i: number) => {
+    toggleOpen();
+    const timer = setTimeout(() => {
+      scrollToSection(pages[i].scroll || "");
+    }, 800);
+
+    return () => clearTimeout(timer);
+  };
 
   return (
     <motion.nav
@@ -119,6 +130,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
               variants={menuItemVariants}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => handleItemClick(pageIndex)}
               key={`menu-item-mobile-${pageIndex}`}
             >
               <div
