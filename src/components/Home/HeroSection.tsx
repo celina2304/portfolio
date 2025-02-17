@@ -172,7 +172,7 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
             viewport={{ once: false, amount: 0.5 }}
             className={`font-tusker bg-green_yellow text-black text-tusker-home-text-mobile md:text-tusker-home-text inline`}
           >
-            Frontend developer
+            Fullstack developer
           </motion.div>{" "}
           specializing in{" "}
           <motion.div
@@ -193,7 +193,7 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
             viewport={{ once: false, amount: 0.5 }}
             className={`font-tusker  text-black text-tusker-home-text-mobile md:text-tusker-home-text inline`}
           >
-            React, Next.js, Tailwind CSS.
+            MERN, Next.js, Tailwind CSS.
           </motion.div>{" "}
           I build visually appealing and user-friendly web experiences.
         </div>
