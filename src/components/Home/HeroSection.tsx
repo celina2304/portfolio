@@ -14,17 +14,6 @@ import CircularPathText from "../ui/CircularPathText";
 import { FunctionalComponentProps } from "../../types/components";
 import { MainMotionTextProps } from "../../types/components/motionText";
 
-// images
-import waves1 from "../../assets/images/bg/waves1.svg";
-import waves1mob from "../../assets/images/bg/waves1-mob.svg";
-import waves2 from "../../assets/images/bg/waves2.svg";
-import waves2mob from "../../assets/images/bg/waves2-mob.svg";
-import waves3 from "../../assets/images/bg/waves3.svg";
-import waves3mob from "../../assets/images/bg/waves3-mob.svg";
-import waves4 from "../../assets/images/bg/waves4.svg";
-import waves4mob from "../../assets/images/bg/waves4-mob.svg";
-
-
 const baseClass = {
   font: "uppercase inline-block bg-transparent text-tusker-heading-mobile md:text-tusker-heading text-black font-tusker",
   base: "h-[100vh] w-[55vw] flex flex-col justify-center",
@@ -92,11 +81,10 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         <motion.div
           style={{
             backgroundColor: "transparent",
-            backgroundImage: `url(${
-              innerWidth <= 450
-                ? waves3mob
-                : waves3
-            })`,
+            backgroundImage: `url(${innerWidth <= 450
+                ? '/waves/waves3-mob.svg'
+                : '/waves/waves3.svg'
+              })`,
             backgroundSize: "cover",
             backgroundPosition: "left top",
             color: "#000000",
@@ -109,11 +97,10 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         <motion.div
           style={{
             backgroundColor: "transparent",
-            backgroundImage: `url(${
-              innerWidth <= 450
-                ? waves4mob
-                : waves4
-            })`,
+            backgroundImage: `url(${innerWidth <= 450
+                ? '/waves/waves4-mob.svg'
+                : '/waves/waves4.svg'
+              })`,
             backgroundSize: "cover",
             backgroundPosition: "right top",
             color: "#000000",
@@ -126,11 +113,10 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         <motion.div
           style={{
             backgroundColor: "transparent",
-            backgroundImage: `url(${
-              innerWidth <= 450
-                ? waves1mob
-                : waves1
-            })`,
+            backgroundImage: `url(${innerWidth <= 450
+                ? '/waves/waves1-mob.svg'
+                : '/waves/waves1.svg'
+              })`,
             backgroundSize: "cover",
             backgroundPosition: "right",
             color: "#000000",
@@ -146,11 +132,10 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         <motion.div
           style={{
             backgroundColor: "transparent",
-            backgroundImage: `url(${
-              innerWidth <= 450
-                ? waves2mob
-                : waves2
-            })`,
+            backgroundImage: `url(${innerWidth <= 450
+                ? '/waves/waves2-mob.svg'
+                : '/waves/waves2.svg'
+              })`,
             backgroundSize: "cover",
             backgroundPosition: "left",
             zIndex: 20,
@@ -168,9 +153,8 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
       <div id="hero-blank" className="h-[100vh]"></div>
       <div
         id="hero-description"
-        className={`min-h-[100vh] md:min-h-[10vh] lg:min-h-[100vh] relative flex flex-col justify-end items-center gap-10 md:justify-evenly ${
-          scrollY > innerHeight * 2 ? "z-30" : ""
-        } p-section-mobile pt-0 pb-10 md:p-section-xl 2xl:p-section-2xl 2xl:w-[70%] 2xl:mx-auto  text-green_yellow overflow-hidden`}
+        className={`min-h-[100vh] md:min-h-[10vh] lg:min-h-[100vh] relative flex flex-col justify-end items-center gap-10 md:justify-evenly ${scrollY > innerHeight * 2 ? "z-30" : ""
+          } p-section-mobile pt-0 pb-10 md:p-section-xl 2xl:p-section-2xl 2xl:w-[70%] 2xl:mx-auto  text-green_yellow overflow-hidden`}
       >
         <div className=" md:pt-16 font-tusker text-tusker-home-text-mobile md:text-tusker-home-text md:leading-[90px]">
           A{" "}
