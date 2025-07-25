@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface DimensionsState {
-    innerHeight: number;
-    innerWidth: number;
-}
+import { DimensionsState } from "../../types/redux/dimension";
 
 const initialState: DimensionsState = {
     innerHeight: 0,

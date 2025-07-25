@@ -1,20 +1,9 @@
 // src/store/sectionScrollSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-
-export interface SectionDetails {
-  sectionId: string;
-  startPosition: number;
-  endPosition: number;
-  sectionHeight: number;
-}
-
-export interface SectionScrollState {
-  sections: SectionDetails[];
-}
+import { SectionDetails, SectionScrollState } from "../../types/redux/sectionScroll";
 
 const initialState: SectionScrollState = {
-  sections: [], // Initialize an empty array for sections
+  sections: [],
 };
 
 

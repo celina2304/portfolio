@@ -4,17 +4,14 @@ import ProjectSection from "../components/Home/ProjectsSection";
 import SkillsSection from "../components/Home/SkillsSection";
 import ContactMeSection from "../components/Home/ContactMeSection";
 import ResumeSection from "../components/Home/ResumeSection";
+
+// hooks
 import useTrackSectionDetails from "../hooks/useTrackSectionStart";
 
-export default function Home() {
-  const sections = {
-    hero: "HOMEPAGE-HeroSection",
-    about: "HOMEPAGE-AboutSection",
-    project: "HOMEPAGE-ProjectsSection",
-    skills: "HOMEPAGE-SkillsSection",
-    contact: "HOMEPAGE-ContactMeSection",
-    resume: "HOMEPAGE-ResumeSection",
-  };
+// constants;
+import sections from "../constants/sections";
+
+const Home: React.FC = () => {
   useTrackSectionDetails(sections.hero);
   useTrackSectionDetails(sections.about);
   useTrackSectionDetails(sections.project);
@@ -33,3 +30,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;

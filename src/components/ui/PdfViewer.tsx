@@ -1,21 +1,25 @@
 import { pdfjs, Document, Page } from "react-pdf";
-import resume from "../../assets/pdfs/resume.pdf";
+
+// redux
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+
+// types
+import { PdfProps } from "../../types/components/resume";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
   import.meta.url
 ).toString();
 
-const PdfViewer = () => {
+const PdfViewer: React.FC<PdfProps> = (props) => {
   const innerWidth = useSelector(
     (state: RootState) => state.dimensions.innerWidth
   );
   return (
     <>
       {innerWidth && (
-        <Document className={"bg-transparent"} file={resume}>
+        <Document className={"bg-transparent"} file={props.pdf}>
           <Page
             // width={
             //   innerWidth <= 450

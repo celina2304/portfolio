@@ -2,17 +2,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setScrollPosition } from '../redux/window/scrollSlice';
 import { RootState } from '../redux/store';
+import { UseScrollToNextSectionProps } from "../types/components";
 
-interface useScrollToNextSectionProps {
-  scrollStart: number | undefined;
-  scrollEnd: number |undefined;
-}
-
-const useScrollToNextSection = ({scrollStart,scrollEnd}:useScrollToNextSectionProps) => {
+const useScrollToNextSection = ({scrollStart,scrollEnd}:UseScrollToNextSectionProps) => {
     const dispatch = useDispatch();
     const scrollPosition = useSelector((state: RootState) => state.scroll.scrollPosition);
-    const [isAnimating, setIsAnimating] = useState(false);
-
+    const [isAnimating, setIsAnimating] = useState(false);  
+    
   useEffect(() => {
     if(scrollStart ==undefined || scrollEnd == undefined) return;
     const handleScroll = () => {

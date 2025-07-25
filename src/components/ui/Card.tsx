@@ -1,7 +1,5 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { projectCardProps } from "../../types/components";
-import "./Card.css";
+import { projectCardProps } from "../../types/components/projectCard";
 
 export const Card: React.FC<projectCardProps> = (props) => {
   const { projectDetails, index = 1 } = props;
@@ -21,12 +19,16 @@ export const Card: React.FC<projectCardProps> = (props) => {
         duration: 0.5,
         delay: (index + 1) * 0.1, // Delay applied only when the element is in view
       }}
-      className={`min-h-full`}
+      className={`min-h-full bg-transparent`}
     >
-      <div className="cursor-pointer hover:scale-[1.01] duration-200 ease-in-out hover:shadow-projectCard relative min-h-full flex flex-col max-w-sm 2xl:max-w-screen-2xl border-2 border-green_yellow">
+      <div className="cursor-pointer hover:scale-[1.02] rounded-lg duration-200 ease-in-out hover:shadow-projectCard relative min-h-full flex flex-col max-w-sm 2xl:max-w-screen-2xl border-2 border-green_yellow"
+      onClick={() => {
+        window.open(projectDetails.link, "_blank");
+      }}>
         <img
-          className="w-full border-b-2 border-green_yellow"
-          src="https://tailwindcss.com/img/card-top.jpg"
+          className="w-full border-b-2 border-green_yellow rounded-t-lg"
+          src={projectDetails.images[0]}
+          // src="https://tailwindcss.com/img/card-top.jpg"
           alt="Sunset in the mountains"
         />
         <div className="p-3 relative flex flex-col flex-grow overflow-hidden">
@@ -41,11 +43,11 @@ export const Card: React.FC<projectCardProps> = (props) => {
             {projectDetails.description}
           </p>
         </div>
-        <div className="p-3 flex gap-2 items-center flex-wrap justify-start ">
+        <div className="p-3 flex rounded-b-lg gap-1 items-center flex-wrap justify-start ">
           {projectDetails.skills.map((skill, skillIndex) => (
             <span
               key={`project-card${index}-skill${skillIndex}`}
-              className="bg-green_yellow text-black rounded-md 2xl:text-3xl p-1 text-xs font-semibold"
+              className="bg-green_yellow text-black rounded-md px-1 py-[0.05rem] text-xs 2xl:text-3xl"
             >
               {skill}
             </span>

@@ -1,9 +1,29 @@
 import { motion } from "framer-motion";
-import { RootState } from "../../redux/store";
+
+// redux
 import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+
+// hooks
 import useScrollToNextSection from "../../hooks/useScrollInsideSection";
+
+// ui components
 import CircularPathText from "../ui/CircularPathText";
+
+// types
 import { FunctionalComponentProps } from "../../types/components";
+import { MainMotionTextProps } from "../../types/components/motionText";
+
+// images
+import waves1 from "../../assets/images/bg/waves1.svg";
+import waves1mob from "../../assets/images/bg/waves1-mob.svg";
+import waves2 from "../../assets/images/bg/waves2.svg";
+import waves2mob from "../../assets/images/bg/waves2-mob.svg";
+import waves3 from "../../assets/images/bg/waves3.svg";
+import waves3mob from "../../assets/images/bg/waves3-mob.svg";
+import waves4 from "../../assets/images/bg/waves4.svg";
+import waves4mob from "../../assets/images/bg/waves4-mob.svg";
+
 
 const baseClass = {
   font: "uppercase inline-block bg-transparent text-tusker-heading-mobile md:text-tusker-heading text-black font-tusker",
@@ -11,11 +31,6 @@ const baseClass = {
   left: "text-right pr-2 md:pr-4",
   right: "pl-2 md:pl-4",
 };
-
-interface MainMotionTextProps {
-  delay: number;
-  text: string;
-}
 
 const MainMotionText: React.FC<MainMotionTextProps> = (props) => {
   return (
@@ -55,7 +70,7 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
     scrollStart: currentSection?.startPosition,
     scrollEnd:
       currentSection?.sectionHeight !== undefined
-        ? innerHeight * 2 - 50
+        ? innerHeight * 2
         : undefined,
   });
 
@@ -70,17 +85,18 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   return (
     <section
       id={id}
-      className="-mt-[85px] 2xl:-mt-[140px] relative h-[310vh] w-full"
+      className="md:-mt-[85px] 2xl:-mt-[140px] relative w-full"
     >
       {/* Sticky container */}
-      <div className="sticky bg-transparent top-0 z-20 h-[100vh] overflow-hidden flex">
+      <div id="hero-front" className="sticky bg-transparent top-0 z-20 h-[100vh] overflow-hidden flex">
         <motion.div
           style={{
             backgroundColor: "transparent",
-            backgroundImage:
+            backgroundImage: `url(${
               innerWidth <= 450
-                ? `url('/images/waves3-mob.svg')`
-                : `url('/images/waves3.svg')`,
+                ? waves3mob
+                : waves3
+            })`,
             backgroundSize: "cover",
             backgroundPosition: "left top",
             color: "#000000",
@@ -93,10 +109,11 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         <motion.div
           style={{
             backgroundColor: "transparent",
-            backgroundImage:
+            backgroundImage: `url(${
               innerWidth <= 450
-                ? `url('/images/waves4-mob.svg')`
-                : `url('/images/waves4.svg')`,
+                ? waves4mob
+                : waves4
+            })`,
             backgroundSize: "cover",
             backgroundPosition: "right top",
             color: "#000000",
@@ -109,10 +126,11 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         <motion.div
           style={{
             backgroundColor: "transparent",
-            backgroundImage:
+            backgroundImage: `url(${
               innerWidth <= 450
-                ? `url('/images/waves1-mob.svg')`
-                : `url('/images/waves1.svg')`,
+                ? waves1mob
+                : waves1
+            })`,
             backgroundSize: "cover",
             backgroundPosition: "right",
             color: "#000000",
@@ -128,10 +146,11 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         <motion.div
           style={{
             backgroundColor: "transparent",
-            backgroundImage:
+            backgroundImage: `url(${
               innerWidth <= 450
-                ? `url('/images/waves2-mob.svg')`
-                : `url('/images/waves2.svg')`,
+                ? waves2mob
+                : waves2
+            })`,
             backgroundSize: "cover",
             backgroundPosition: "left",
             zIndex: 20,
@@ -146,14 +165,14 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
           <MainMotionText text="CELINA" delay={0.25} />
         </motion.div>
       </div>
-      <div className="h-[100vh]"></div>
+      <div id="hero-blank" className="h-[100vh]"></div>
       <div
         id="hero-description"
-        className={`h-[110vh] md:h-[100vh] relative ${
+        className={`min-h-[100vh] md:min-h-[10vh] lg:min-h-[100vh] relative flex flex-col justify-end items-center gap-10 md:justify-evenly ${
           scrollY > innerHeight * 2 ? "z-30" : ""
-        } p-section-mobile md:p-section-xl 2xl:p-section-2xl 2xl:w-[70%] 2xl:mx-auto flex items-center justify-center text-6xl text-green_yellow overflow-hidden`}
+        } p-section-mobile pt-0 pb-10 md:p-section-xl 2xl:p-section-2xl 2xl:w-[70%] 2xl:mx-auto  text-green_yellow overflow-hidden`}
       >
-        <div className="md:pt-16 font-tusker text-tusker-home-text-mobile md:text-tusker-home-text md:leading-[90px]">
+        <div className=" md:pt-16 font-tusker text-tusker-home-text-mobile md:text-tusker-home-text md:leading-[90px]">
           A{" "}
           <motion.div
             initial={{
@@ -170,7 +189,7 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
               duration: 1,
             }}
             viewport={{ once: false, amount: 0.5 }}
-            className={`font-tusker bg-green_yellow text-black text-tusker-home-text-mobile md:text-tusker-home-text inline`}
+            className={`font-tusker bg-green_yellow text-black inline`}
           >
             Fullstack developer
           </motion.div>{" "}
@@ -191,21 +210,21 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
               delay: 0.2,
             }}
             viewport={{ once: false, amount: 0.5 }}
-            className={`font-tusker  text-black text-tusker-home-text-mobile md:text-tusker-home-text inline`}
+            className={`font-tusker  text-black inline`}
           >
             MERN, Next.js, Tailwind CSS.
           </motion.div>{" "}
           I build visually appealing and user-friendly web experiences.
         </div>
-        <div className="absolute -bottom-[70px] -right-[35px] md:-bottom-5 md:right-0 w-[300px] h-[300px] bg-transparent">
-          <div className="absolute top-0 left-0  w-[300px] h-[300px] bg-transparent">
+        <div className="self-end relative w-[12rem] h-[12rem] xl:w-[18rem] xl:h-[18rem] bg-transparent">
+          <div className="absolute top-0 left-0  w-full h-full bg-transparent">
             <CircularPathText
               text="FRONTEND >> BACKEND >> DEVOPS >>"
               cls="text-green_yellow"
               direction={scrollDirection === "up" ? "right" : "left"}
             />
           </div>
-          <div className="absolute top-[55px] left-[55px]  w-[190px] h-[190px] bg-transparent">
+          <div className="absolute top-[1.75rem] left-[1.75rem] xl:top-[2.6rem] xl:left-[2.6rem] w-[70%] h-[70%] bg-transparent">
             <CircularPathText
               text="FRONTEND << BACKEND << DEVOPS <<"
               cls="text-green_yellow"

@@ -1,17 +1,19 @@
-// import Button from "../ui/Button";
-import React from "react";
-import { FunctionalComponentProps } from "../../types/components";
 import { Link } from "react-router-dom";
+
+// types and constants
+import { FunctionalComponentProps } from "../../types/components";
 import { LINKS } from "../../constants/links";
-import myImage from "../../assets/images/low-poly-grid-haikei.svg";
+
+// components
+// import Button from "../ui/Button";
+
+//images
+import myImage from "../../assets/images/bg/contact_me_bg.svg";
 import linkedin from "../../assets/icons/linkedin.svg";
 import instagram from "../../assets/icons/instagram.svg";
 import facebook from "../../assets/icons/facebook.svg";
 import discord from "../../assets/icons/discord.svg";
 import github from "../../assets/icons/github.svg";
-// import useScrollToNextSection from "../../hooks/useScrollInsideSection";
-// import { useSelector } from "react-redux";
-// import { RootState } from "../../redux/store";
 
 const cardClassnames = {
   card: "border-2 border-green_yellow p-3 xs:p-5 h-full font-medium text-sm",
@@ -22,27 +24,6 @@ const cardClassnames = {
 };
 
 const ContactMeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
-  // const { sections } = useSelector((state: RootState) => state.sectionScroll);
-  // const currentSection = sections.find((item) => item.sectionId === id);
-
-  // useScrollToNextSection({
-  //   scrollStart: currentSection?.startPosition,
-  //   scrollEnd:
-  //     currentSection?.sectionHeight !== undefined
-  //       ? currentSection?.sectionHeight / 3
-  //       : undefined,
-  // });
-
-  // useScrollToNextSection({
-  //   scrollStart: currentSection?.sectionHeight
-  //     ? currentSection?.sectionHeight / 2
-  //     : undefined,
-  //   scrollEnd:
-  //     currentSection?.sectionHeight !== undefined
-  //       ? (currentSection?.sectionHeight * 2) / 3
-  //       : undefined,
-  // });
-
   return (
     <section id={id} className="bg-transparent relative text-green_yellow">
       <div

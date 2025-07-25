@@ -8,7 +8,6 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-    /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
@@ -17,11 +16,18 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Linting */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@types/*": ["types/*"]
+    },
+
+    "typeRoots": ["./node_modules/@types", "./types"],
+
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src", "types"]
 }

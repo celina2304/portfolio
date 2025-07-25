@@ -1,13 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+// radix themes
+import "@radix-ui/themes/styles.css";
+import { Theme } from "@radix-ui/themes";
+
+// layout
 import Layout from "./pages/Layout";
+
+//pages
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Projects from "./pages/Projects";
 import Resume from "./pages/Resume";
-import "@radix-ui/themes/styles.css";
-import { Theme } from "@radix-ui/themes";
+
+// hooks
 import useScrollTracking from "./hooks/useScrollTracking";
 import useWindowDimensions from "./hooks/useWindowDimensions";
 

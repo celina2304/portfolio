@@ -9,6 +9,7 @@ import { easeInOut, motion } from "framer-motion";
 import MobileNav from "./ui/MobileNav";
 import useScrollToSection from "../hooks/useScrollToSection";
 // import Switch from "../components/ui/Switch";
+import logo from "../assets/images/logo/portfoliologo.png"
 
 export default function Header() {
   const scrollToSection = useScrollToSection();
@@ -26,7 +27,7 @@ export default function Header() {
     >
       <Link to="/" className="hidden md:block bg-transparent pl-5">
         <img
-          src="/images/portfoliologo.png"
+          src={logo}
           alt="icon"
           className="h-[50px] w-auto bg-transparent"
         />
@@ -75,11 +76,11 @@ export default function Header() {
           duration: 0.7,
           ease: easeInOut,
         }}
-        className="hidden md:flex items-center justify-end gap-5 text-sm"
+        className="hidden md:flex bg-transparent shadow-lg items-center justify-end gap-5 text-sm"
       >
         {/* dark mode vs light mode 
             <Switch /> */}
-        <Link to={LINKS.GITHUB}>
+        <Link to={LINKS.GITHUB} className="bg-transparent" >
           <Button onClick={() => {}} type="button" label="GITHUB ->" />
         </Link>
       </motion.div>

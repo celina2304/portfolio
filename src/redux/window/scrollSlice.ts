@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface ScrollState {
-  scrollY: number; // for tracking current scrollPosition 
-  scrollPosition: number; // destination for final scroll position
-  scrollDirection: "up" | "down";
-}
+import { ScrollState } from "../../types/redux/scroll";
 
 const initialState: ScrollState = {
   scrollY: 0,

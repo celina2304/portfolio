@@ -1,12 +1,19 @@
-import { motion, useCycle, MotionProps } from "framer-motion";
-import React from "react";
+import { Link } from "react-router-dom";
+import { motion, useCycle } from "framer-motion";
+
+// redux
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { Page } from "../../types/components";
-import { Link } from "react-router-dom";
-import { LINKS } from "../../constants/links";
-import Button from "./Button";
+
+// hooks 
 import useScrollToSection from "../../hooks/useScrollToSection";
+
+// types and constants
+import { PathProps, MobileNavProps } from "../../types/components/mobileNav";
+import { LINKS } from "../../constants/links";
+
+// ui components
+import Button from "./Button";
 
 const navigationVariants = {
   open: {
@@ -61,15 +68,6 @@ const menuItemVariants = {
     },
   },
 };
-
-interface PathProps extends MotionProps {
-  d?: string; // Optional `d` attribute for the path
-  stroke?: string;
-}
-
-interface MobileNavProps {
-  pages: Page[];
-}
 
 const Path: React.FC<PathProps> = (props) => (
   <motion.path strokeWidth="3" strokeLinecap="round" {...props} />

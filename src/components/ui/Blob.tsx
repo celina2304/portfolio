@@ -1,14 +1,5 @@
 import { motion } from "framer-motion";
-
-interface SingleBlobProps {
-  color: string;
-  motionClass: string;
-  blobClass: string;
-  direction: number;
-}
-interface BlobProps {
-  variant: number;
-}
+import { SingleBlobProps, BlobProps } from "../../types/components/blob";
 
 const SingleBlob: React.FC<SingleBlobProps> = (props) => {
   const { color, motionClass, blobClass, direction } = props;

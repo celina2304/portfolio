@@ -1,7 +1,17 @@
+
+// types
 import { FunctionalComponentProps } from "../../types/components";
+
+// ui components
 import Button from "../ui/Button";
 import PdfViewer from "../ui/PdfViewer";
+
+// resume pdf file
 import resume from "../../assets/pdfs/resume.pdf";
+
+// interface pdfProps {
+//   pdf: File | string;
+// }
 
 const ResumeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   const handleDownload = () => {
@@ -23,7 +33,7 @@ const ResumeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
       <br />
       <div className="md:px-section-xl flex flex-col lg:flex-row  lg:justify-center 2xl:mx-auto 2xl:w-[70%] gap-10">
         <div className="flex lg:block items-center justify-center">
-          <PdfViewer />
+          <PdfViewer pdf={resume} />
         </div>
         <div className="p-10">
           <div className="flex items-center justify-center">

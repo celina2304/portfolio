@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
-import { CirclePathTextProps } from "../../types/components";
 import { useEffect, useState } from "react";
+
+import { motion } from "framer-motion";
+import { CirclePathTextProps } from "../../types/components/circularPath";
 
 const CircularPathText: React.FC<CirclePathTextProps> = (props) => {
   const {
@@ -25,7 +26,7 @@ const CircularPathText: React.FC<CirclePathTextProps> = (props) => {
       }}
     >
       <svg
-        className="bg-transparent absolute w-full h-full scale-[0.5] md:scale-[0.8]"
+        className="bg-transparent absolute w-full h-full"
         viewBox="0 0 100 100"
         xmlns="http://www.w3.org/2000/svg"
       >

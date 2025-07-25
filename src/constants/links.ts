@@ -5,7 +5,7 @@ export const LINKS = {
   FACEBOOK: "",
   DISCORD: "",
   PERSONAL_WEBSITE: "https://celina-portfolio.netlify.app/",
-  VERCEL: "",
+  VERCEL: "https://vercel.com/celina2304s-projects",
   PROJECTS: {
     TASKY: "",
   }
