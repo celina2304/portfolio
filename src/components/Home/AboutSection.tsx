@@ -43,7 +43,7 @@ const AboutSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   return (
     <section
       id={id}
-      className="relative cursor-default text-center p-section-mobile md:p-section-xl 2xl:p-section-2xl 2xl:h-[100vh] 2xl:flex 2xl:flex-col items-center justify-center "
+      className="cursor-default text-center p-section-mobile md:p-section-xl 2xl:p-section-2xl 2xl:min-h-[100vh] 2xl:flex 2xl:flex-col items-center justify-center border-none"
     >
       <motion.div className="2xl:w-[70%] 2xl:mx-auto bg-transparent font-tusker font-medium text-tusker-home-text-mobile md:text-tusker-subheading uppercase text-green_yellow">
         <GreenText text="Building the web" type="solid" delay={0.1} />{" "}

@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+//icons
+import { ArrowRightIcon } from "@heroicons/react/16/solid";
+
 // redux
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
@@ -9,32 +12,37 @@ import { FunctionalComponentProps } from "../../types/components";
 import projectsData from "../../constants/projects";
 
 // ui components
-import { ArrowRightIcon } from "@heroicons/react/16/solid";
 import { Card } from "../ui/Card";
 import Blob from "../ui/Blob";
+import useSectionTranslate from "../../hooks/useSectionTranslate";
 // import Button from "../ui/Button";
 
 
 const ProjectSection: React.FC<FunctionalComponentProps> = ({ id }) => {
-  const scroll = useSelector((state: RootState) => state.scroll.scrollY);
   // const { innerWidth } = useSelector((state: RootState) => state.dimensions);
   const sectionDetails = useSelector(
     (state: RootState) => state.sectionScroll.sections
   );
   const [translateVal, setTranslateVal] = useState<string>("");
+  const translateY = useSectionTranslate(id);
   const currentSection = sectionDetails.find((item) => item.sectionId === id);
 
   useEffect(() => {
     const calculateTranslateVal = () => {
       if (
         currentSection !== undefined &&
-        scroll >= currentSection.startPosition - currentSection.sectionHeight &&
-        scroll <= currentSection.endPosition + currentSection.sectionHeight
+        window.scrollY >= currentSection.startPosition - currentSection.sectionHeight &&
+        window.scrollY <= currentSection.endPosition + currentSection.sectionHeight
       ) {
         const baseScroll = currentSection.sectionHeight;
-        const effectiveScroll = (scroll - baseScroll) / 7;
+        const effectiveScroll = (window.scrollY - baseScroll) / 6;
+
+        const effectiveSectionScroll = (window.scrollY-currentSection.startPosition)/6;
+
+        console.log("effectiveScroll ", effectiveSectionScroll);
 
         setTranslateVal(`translateY(${effectiveScroll}px)`);
+        // setTranslateSectionVal(`translateY(${effectiveSectionScroll}px)`);
       }
     };
     calculateTranslateVal();
@@ -43,9 +51,12 @@ const ProjectSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   return (
     <section
       id={id}
-      className="p-section-mobile md:p-section-xl 2xl:p-section-2xl relative overflow-x-clip overflow-y-visible text-green_yellow"
+      className="p-section-mobile md:p-section-xl 2xl:p-section-2xl relative overflow-x-clip overflow-y-visible border-none text-green_yellow"
     >
-      <div className="relative bg-transparent z-20">
+      <div style={{
+        transform: `translateY(${translateY ?? 0}px)`,
+        // transform: `${translateSectionVal}`,
+      }} className="relative bg-transparent z-20">
         <span className="bg-transparent font-tusker uppercase text-tusker-home-text-mobile md:text-tusker-subheading2 2xl:text-tusker-heading md:px-2 ">
           Projects I've worked on
           <ArrowRightIcon className="h-[80px] fill-green_yellow bg-transparent w-auto inline" />
@@ -74,19 +85,19 @@ const ProjectSection: React.FC<FunctionalComponentProps> = ({ id }) => {
       </div>
       <div
         style={{
-          transform: `${translateVal} scale(1.6) `,
+          transform: `${translateVal} scale(1.5) `,
         }}
-        className="absolute hidden sm:inline sm:-top-20 right-10 md:-top-[60vw] lg:-top-[10vw] xl:-top-[20vw]  md:right-16 z-10  bg-transparent"
+        className="absolute bg-transparent hidden sm:inline sm:-top-24 -right-24 xl:-top-60 z-10"
       >
-        <Blob variant={1} />
+        <Blob variant={1} cls="w-[15rem] h-[15rem]" />
       </div>
       <div
         style={{
-          transform: `${translateVal} scale(1.6) `,
+          transform: `${translateVal} scale(1.5) `,
         }}
-        className="absolute hidden sm:inline sm:bottom-[100vw] md:bottom-[90vw] lg:bottom-[30vw] xl:bottom-[30vw] -left-[200px] md:-left-16 z-10 w-[100px] h-[100px] bg-transparent"
+        className="absolute bg-transparent hidden sm:inline sm:top-[25rem] -left-24 lg:top-[8rem] xl:top-[10rem] z-10"
       >
-        <Blob variant={2} />
+        <Blob variant={2} cls="w-[15rem] h-[15rem]" />
       </div>
     </section>
   );

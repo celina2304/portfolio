@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ScrollState } from "../../types/redux/scroll";
 
 const initialState: ScrollState = {
-  scrollY: 0,
   scrollPosition: 0,
   scrollDirection: "down"
 };
@@ -11,9 +10,6 @@ const scrollSlice = createSlice({
   name: "scroll",
   initialState,
   reducers: {
-    setScrollY: (state, action: PayloadAction<number>) => {
-      state.scrollY = action.payload;
-    },
     setScrollPosition: (state, action: PayloadAction<number>) => {
       state.scrollPosition = action.payload
     },
@@ -23,5 +19,5 @@ const scrollSlice = createSlice({
   },
 });
 
-export const { setScrollY, setScrollPosition, setScrollDirection } = scrollSlice.actions;
+export const { setScrollPosition, setScrollDirection } = scrollSlice.actions;
 export default scrollSlice.reducer;

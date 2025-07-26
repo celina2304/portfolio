@@ -33,8 +33,8 @@ const ContactMeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
       <div className="h-[50vh] xs:h-[100vh] bg-transparent flex items-start bg-cover justify-center font-tusker uppercase text-center text-tusker-card-heading xs:text-tusker-subheading px-2 text-stroke2-green_yellow-DEFAULT 2xl:text-tusker-heading">
         NEED TO DROP A CALL?
       </div>
-      <div className="h-[100vh] pb-section-xl bg-transparent m-auto px-section-mobile md:px-section-xl 2xl:px-section-2xl grid grid-cols-1 md:grid-cols-none">
-        <div className="h-full 2xl:h-[90vh] border-2 border-green_yellow grid grid-cols-1 md:grid-cols-10 bg-transparent">
+      <div className="min-h-[100vh] pb-section-xl bg-transparent m-auto px-section-mobile md:px-section-xl 2xl:px-section-2xl grid grid-cols-1 md:grid-cols-none">
+        <div className="h-full 2xl:h-[90vh] border-2 border-green_yellow grid grid-cols-1 lg:grid-cols-10 bg-transparent">
           <div className="2xl:text-tusker-heading border-2 border-green_yellow col-span-1 md:col-span-4 flex items-center justify-center h-full font-tusker text-tusker-contact-mobile xs:text-tusker-home-text-mobile md:text-tusker-subheading2 p-5 2xl:p-[100px]">
             Here's my contact info
           </div>
@@ -66,7 +66,7 @@ const ContactMeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
                   className={`${cardClassnames.cardDescription} text-lg cursor-pointer flex items-center justify-start gap-1`}
                 >
                   Linked
-                  <img src={linkedin} alt="" className="h-10 w-auto" />
+                  <img loading="lazy" src={linkedin} alt="" className="h-10 w-auto" />
                 </div>
               </Link>
             </div>
@@ -78,13 +78,13 @@ const ContactMeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
               <div className={`${cardClassnames.cardDescription}`}>
                 <div className="flex gap-3">
                   <Link to={LINKS.INSTAGRAM} target="_blank">
-                    <img src={instagram} alt="" className="h-10 w-auto" />
+                    <img loading="lazy" src={instagram} alt="" className="h-10 w-auto" />
                   </Link>
                   <Link to={LINKS.FACEBOOK} target="_blank">
-                    <img src={facebook} alt="" className="h-10 w-auto" />
+                    <img loading="lazy" src={facebook} alt="" className="h-10 w-auto" />
                   </Link>
                   <Link to={LINKS.DISCORD} target="_blank">
-                    <img src={discord} alt="" className="h-10 w-auto" />
+                    <img loading="lazy" src={discord} alt="" className="h-10 w-auto" />
                   </Link>
                 </div>
               </div>
@@ -98,7 +98,7 @@ const ContactMeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
               </div>
               <div className={`${cardClassnames.cardDescription}`}>
                 <Link to={LINKS.GITHUB} target="_blank">
-                  <img src={github} alt="" className="h-10 w-auto" />
+                  <img loading="lazy" src={github} alt="" className="h-10 w-auto" />
                 </Link>
               </div>
             </div>

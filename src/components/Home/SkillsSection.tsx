@@ -10,7 +10,7 @@ const SkillsSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   return (
     <section
       id={id}
-      className="p-section-mobile md:p-section-xl 2xl:p-section-2xl  md:h-[100vh] relative text-green_yellow"
+      className="p-section-mobile md:p-section-xl 2xl:p-section-2xl  lg:min-h-[100vh] relative text-green_yellow"
     >
       <div className="text-center bg-transparent font-tusker uppercase text-tusker-home-text-mobile md:text-tusker-subheading2 2xl:text-tusker-heading 2xl:pb-10 px-2 text-green_yellow">
         Skills I have
@@ -20,6 +20,7 @@ const SkillsSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         {skillSet.map((skill, skillIndex) => {
           return (
             <img
+              loading="lazy"
               key={`${skillIndex}-skill-skills-section`}
               src={skill.dark}
               className="w-[100px] h-[100px] m-3 md:m-5"

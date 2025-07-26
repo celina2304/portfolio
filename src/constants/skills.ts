@@ -1,12 +1,12 @@
-import reactImg from '../assets/skills/react.svg'
-import cssImg from '../assets/skills/css.svg'
-import gitImg from '../assets/skills/git.svg'
-import githubImg from '../assets/skills/github.svg'
-import htmlImg from '../assets/skills/html.svg'
-import jsImg from '../assets/skills/javascript.svg'
-import mongoImg from '../assets/skills/mongodb.svg'
-import nodeImg from '../assets/skills/nodejs.svg'
-import tailwindImg from '../assets/skills/tailwindcss.svg'
+import reactImg from '../assets/images/skills/react.svg'
+import cssImg from '../assets/images/skills/css.svg'
+import gitImg from '../assets/images/skills/git.svg'
+import githubImg from '../assets/images/skills/github.svg'
+import htmlImg from '../assets/images/skills/html.svg'
+import jsImg from '../assets/images/skills/javascript.svg'
+import mongoImg from '../assets/images/skills/mongodb.svg'
+import nodeImg from '../assets/images/skills/nodejs.svg'
+import tailwindImg from '../assets/images/skills/tailwindcss.svg'
 
 const skillSet = [
     {

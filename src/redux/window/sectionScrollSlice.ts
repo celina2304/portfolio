@@ -1,6 +1,6 @@
 // src/store/sectionScrollSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SectionDetails, SectionScrollState } from "../../types/redux/sectionScroll";
+import { SectionDetails, SectionTranslateDetails, SectionScrollState } from "../../types/redux/sectionScroll";
 
 const initialState: SectionScrollState = {
   sections: [],
@@ -12,7 +12,7 @@ const sectionScrollSlice = createSlice({
   initialState,
   reducers: {
     setSectionDetails: (state, action: PayloadAction<SectionDetails>) => {
-      const { sectionId, startPosition, endPosition, sectionHeight } = action.payload;
+      const { sectionId, startPosition, endPosition, sectionHeight, sectionTranslate } = action.payload;
 
       const sectionIndex = state.sections.findIndex(
         (section) => section.sectionId === sectionId
@@ -24,6 +24,7 @@ const sectionScrollSlice = createSlice({
           startPosition,
           endPosition,
           sectionHeight,
+          sectionTranslate
         });
       } else {
         state.sections[sectionIndex] = {
@@ -31,11 +32,19 @@ const sectionScrollSlice = createSlice({
           startPosition,
           endPosition,
           sectionHeight,
+          sectionTranslate
         };
       }
     },
+    setSectionTranslate: (state, action: PayloadAction<SectionTranslateDetails>) => {
+      const { sectionId, sectionTranslate } = action.payload;
+      const sectionIndex = state.sections.findIndex((section) => section.sectionId === sectionId);
+      if(sectionIndex !== -1){
+        state.sections[sectionIndex].sectionTranslate = sectionTranslate;
+      }
+    }
   },
 });
 
-export const { setSectionDetails } = sectionScrollSlice.actions;
+export const { setSectionDetails, setSectionTranslate } = sectionScrollSlice.actions;
 export default sectionScrollSlice.reducer;

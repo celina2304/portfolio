@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { SingleBlobProps, BlobProps } from "../../types/components/blob";
+import blob from "../../assets/images/blob.svg"
+import React from "react";
 
 const SingleBlob: React.FC<SingleBlobProps> = (props) => {
   const { color, motionClass, blobClass, direction } = props;
@@ -34,44 +36,66 @@ const SingleBlob: React.FC<SingleBlobProps> = (props) => {
   );
 };
 
-const Blob: React.FC<BlobProps> = (blobProps) => {
-  const { variant = 1 } = blobProps;
+export const BlobTemp: React.FC<BlobProps> = (blobProps) => {
+  const { variant = 1, cls } = blobProps;
   return (
     <>
-      <div className="">
+      <div>
         <SingleBlob
           color="var(--color-green_yellow-500)"
           motionClass="bg-transparent absolute top-2 left-2 z-[1]"
-          blobClass="bg-transparent scale-[1]"
+          blobClass={`bg-transparent ${cls} scale-[1]`}
           direction={variant === 1 ? 360 : -360}
         />
         <SingleBlob
           color="var(--color-green_yellow-600)"
           motionClass="bg-transparent absolute top-4 left-4 z-[2]"
-          blobClass="bg-transparent scale-[0.8] "
+          blobClass={`bg-transparent ${cls} scale-[0.8]`}
+          // blobClass="bg-transparent scale-[0.8] "
           direction={variant === 1 ? 360 : -360}
         />
         <SingleBlob
           color="var(--color-green_yellow-700)"
           motionClass="bg-transparent absolute top-6 left-6 z-[3]"
-          blobClass="bg-transparent scale-[0.6] "
+          blobClass={`bg-transparent ${cls} scale-[0.6]`}
+          // blobClass="bg-transparent scale-[0.6] "
           direction={variant === 1 ? 360 : -360}
         />
         <SingleBlob
           color="var(--color-green_yellow-800)"
           motionClass="bg-transparent absolute top-8 left-8 z-[4]"
-          blobClass="bg-transparent scale-[0.4] "
+          blobClass={`bg-transparent ${cls} scale-[0.4]`}
+          // blobClass="bg-transparent scale-[0.4] "
           direction={variant === 1 ? 360 : -360}
         />
         <SingleBlob
           color="var(--color-green_yellow-900)"
           motionClass="bg-transparent absolute top-10 left-10 z-[5]"
-          blobClass="bg-transparent scale-[0.2] "
+          blobClass={`bg-transparent ${cls} scale-[0.2]`}
+          // blobClass="bg-transparent scale-[0.2] "
           direction={variant === 1 ? 360 : -360}
         />
       </div>
     </>
   );
 };
+
+const Blob: React.FC<BlobProps> = (blobProps) => {
+  const { variant = 1, cls="" } = blobProps;
+  return (
+    <motion.div
+      animate={{ rotate: variant == 1 ? 360 : -360 }}
+      transition={{
+        repeat: Infinity,
+        duration: 10,
+        ease: "linear",
+      }}
+      className="bg-transparent inline-block"
+    >
+      <img loading="lazy" src={blob} className={`${cls==""? "h-24 w-24": `${cls}`} bg-transparent`} />
+
+    </motion.div>
+  )
+}
 
 export default Blob;

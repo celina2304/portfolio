@@ -13,26 +13,26 @@ import logo from "../assets/images/logo/portfoliologo.png"
 
 export default function Header() {
   const scrollToSection = useScrollToSection();
-  const scroll = useSelector((state: RootState) => state.scroll.scrollY);
   const innerHeight = useSelector(
     (state: RootState) => state.dimensions.innerHeight
   );
   return (
     <header
       className={`${
-        scroll <= innerHeight
+        window.scrollY <= innerHeight
           ? ""
           : "backdrop-blur-sm md:border-b md:border-green_yellow"
       } bg-transparent sticky md:h-auto top-0 left-0 z-[100] font-medium uppercase flex items-center justify-between md:p-2 2xl:p-10`}
     >
       <Link to="/" className="hidden md:block bg-transparent pl-5">
         <img
+          loading="lazy"
           src={logo}
           alt="icon"
           className="h-[50px] w-auto bg-transparent"
         />
       </Link>
-      <ul className="hidden md:flex bg-transparent items-center justify-between gap-5">
+      <ul className="hidden md:flex bg-transparent items-center justify-between text-sm gap-5 lg:gap-10">
         {pages?.map((page, index) => (
           <li
             key={`header-page${page.title}_${index}`}
@@ -54,7 +54,7 @@ export default function Header() {
                 ease: easeInOut,
               }}
               className={`underline-animation ${
-                scroll <= innerHeight * 1.5
+                window.scrollY <= innerHeight * 1.5
                   ? "text-black underline-black"
                   : "text-green_yellow underline-green_yellow"
               } bg-transparent 2xl:text-3xl relative`}

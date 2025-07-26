@@ -24,6 +24,7 @@ const useTrackSectionDetails = (sectionId: string) => {
             startPosition: sectionStartScrollValue,
             endPosition: sectionStartScrollValue + section.offsetHeight,
             sectionHeight: section.offsetHeight,
+            sectionTranslate: 0
           })
         );
       };

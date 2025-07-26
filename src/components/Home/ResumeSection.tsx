@@ -9,9 +9,6 @@ import PdfViewer from "../ui/PdfViewer";
 // resume pdf file
 import resume from "../../assets/pdfs/resume.pdf";
 
-// interface pdfProps {
-//   pdf: File | string;
-// }
 
 const ResumeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   const handleDownload = () => {

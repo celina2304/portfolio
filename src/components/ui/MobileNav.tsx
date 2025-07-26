@@ -76,9 +76,9 @@ const Path: React.FC<PathProps> = (props) => (
 const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
   const scrollToSection = useScrollToSection();
   const { innerHeight } = useSelector((state: RootState) => state.dimensions);
-  const { scrollY } = useSelector((state: RootState) => state.scroll);
+  // const scrollY = window.scrollY;
   const [isOpen, toggleOpen] = useCycle(false, true);
-  const colorVal = scrollY <= innerHeight;
+  const colorVal = window.scrollY <= innerHeight;
 
   const handleItemClick = (i: number) => {
     toggleOpen();
@@ -98,7 +98,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
     >
       <motion.div
         className={`absolute top-0 left-0 bottom-0 w-[250px] h-[100vh] ${
-          scrollY <= innerHeight ? "bg-black" : "bg-green_yellow"
+          window.scrollY <= innerHeight ? "bg-black" : "bg-green_yellow"
         } `}
         variants={sidebarVariants}
       />

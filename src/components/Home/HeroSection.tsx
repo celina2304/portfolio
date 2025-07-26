@@ -6,6 +6,7 @@ import { RootState } from "../../redux/store";
 
 // hooks
 import useScrollToNextSection from "../../hooks/useScrollInsideSection";
+import { useEffect, useState } from "react";
 
 // ui components
 import CircularPathText from "../ui/CircularPathText";
@@ -13,6 +14,8 @@ import CircularPathText from "../ui/CircularPathText";
 // types
 import { FunctionalComponentProps } from "../../types/components";
 import { MainMotionTextProps } from "../../types/components/motionText";
+import { useRef } from "react";
+import useSectionTranslate from "../../hooks/useSectionTranslate";
 
 const baseClass = {
   font: "uppercase inline-block bg-transparent text-tusker-heading-mobile md:text-tusker-heading text-black font-tusker",
@@ -44,8 +47,7 @@ const MainMotionText: React.FC<MainMotionTextProps> = (props) => {
 };
 
 const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
-  // for hero section animation
-  const { scrollY, scrollDirection } = useSelector(
+  const { scrollDirection } = useSelector(
     (state: RootState) => state.scroll
   );
   const { innerHeight, innerWidth } = useSelector(
@@ -54,7 +56,47 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   const sectionDetails = useSelector(
     (state: RootState) => state.sectionScroll.sections
   );
+  const [circleHeight, setCircleHeight] = useState<number>(0);
+  const circleRef = useRef<HTMLDivElement>(null);
+
+  const translateY = (useSectionTranslate(id) ?? 0) - circleHeight * 1.3;
+
+  const left1Ref = useRef<HTMLDivElement>(null);
+  const left2Ref = useRef<HTMLDivElement>(null);
+  const right1Ref = useRef<HTMLDivElement>(null);
+  const right2Ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const baseScroll = 50;
+      const effectiveScroll = Math.max(window.scrollY - baseScroll, 0);
+
+      // Move left images to the left (negative X)
+      if (left1Ref.current) left1Ref.current.style.transform = `translateX(${-effectiveScroll}px)`;
+      if (left2Ref.current) left2Ref.current.style.transform = `translateX(${-effectiveScroll}px)`;
+
+      // Move right images to the right (positive X)
+      if (right1Ref.current) right1Ref.current.style.transform = `translateX(${effectiveScroll}px)`;
+      if (right2Ref.current) right2Ref.current.style.transform = `translateX(${effectiveScroll}px)`;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      if(circleRef.current){
+        setCircleHeight(circleRef.current.offsetHeight)
+      }
+    }
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
+  }, [circleRef])
+
   const currentSection = sectionDetails.find((item) => item.sectionId === id);
+
   useScrollToNextSection({
     scrollStart: currentSection?.startPosition,
     scrollEnd:
@@ -62,14 +104,6 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         ? innerHeight * 2
         : undefined,
   });
-
-  const calculateTranslateVal = (type: string): string => {
-    const baseScroll = 50;
-    const effectiveScroll = Math.max(scrollY - baseScroll, 0);
-    const translateValue = type === "left" ? -effectiveScroll : effectiveScroll;
-
-    return `translateX(${translateValue}px)`;
-  };
 
   return (
     <section
@@ -82,14 +116,15 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
           style={{
             backgroundColor: "transparent",
             backgroundImage: `url(${innerWidth <= 450
-                ? '/waves/waves3-mob.svg'
-                : '/waves/waves3.svg'
+              ? '/waves/waves3-mob.svg'
+              : '/waves/waves3.svg'
               })`,
             backgroundSize: "cover",
             backgroundPosition: "left top",
             color: "#000000",
-            transform: calculateTranslateVal("left"),
+            // transform: calculateTranslateVal("left"),
           }}
+          ref={left2Ref}
           transition={{ duration: 0.4, ease: "easeInOut" }}
           // className={`${baseClass.base} ${baseClass.left}`}
           className="absolute h-[100vh] w-[50vw] top-0 -z-20 right-2"
@@ -98,14 +133,15 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
           style={{
             backgroundColor: "transparent",
             backgroundImage: `url(${innerWidth <= 450
-                ? '/waves/waves4-mob.svg'
-                : '/waves/waves4.svg'
+              ? '/waves/waves4-mob.svg'
+              : '/waves/waves4.svg'
               })`,
             backgroundSize: "cover",
             backgroundPosition: "right top",
             color: "#000000",
-            transform: calculateTranslateVal("right"),
+            // transform: calculateTranslateVal("right"),
           }}
+          ref={right2Ref}
           transition={{ duration: 0.4, ease: "easeInOut" }}
           // className={`${baseClass.base} ${baseClass.left}`}
           className="absolute h-[100vh] w-[50vw] top-0 -z-20 left-2"
@@ -114,14 +150,15 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
           style={{
             backgroundColor: "transparent",
             backgroundImage: `url(${innerWidth <= 450
-                ? '/waves/waves1-mob.svg'
-                : '/waves/waves1.svg'
+              ? '/waves/waves1-mob.svg'
+              : '/waves/waves1.svg'
               })`,
             backgroundSize: "cover",
             backgroundPosition: "right",
             color: "#000000",
-            transform: calculateTranslateVal("left"),
+            // transform: calculateTranslateVal("left"),
           }}
+          ref={left1Ref}
           transition={{ duration: 0.4, ease: "easeInOut" }}
           className={`${baseClass.base} ${baseClass.left}`}
         >
@@ -133,15 +170,16 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
           style={{
             backgroundColor: "transparent",
             backgroundImage: `url(${innerWidth <= 450
-                ? '/waves/waves2-mob.svg'
-                : '/waves/waves2.svg'
+              ? '/waves/waves2-mob.svg'
+              : '/waves/waves2.svg'
               })`,
             backgroundSize: "cover",
             backgroundPosition: "left",
             zIndex: 20,
             color: "#000000",
-            transform: calculateTranslateVal("right"),
+            // transform: calculateTranslateVal("right"),
           }}
+          ref={right1Ref}
           transition={{ duration: 0.4, ease: "easeInOut" }}
           className={`${baseClass.base} ${baseClass.right}`}
         >
@@ -153,7 +191,7 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
       <div id="hero-blank" className="h-[100vh]"></div>
       <div
         id="hero-description"
-        className={`min-h-[100vh] md:min-h-[10vh] lg:min-h-[100vh] relative flex flex-col justify-end items-center gap-10 md:justify-evenly ${scrollY > innerHeight * 2 ? "z-30" : ""
+        className={`min-h-[100vh] md:min-h-[10vh] lg:min-h-[100vh] relative flex flex-col justify-end items-center gap-10 md:justify-evenly ${window.scrollY > innerHeight * 2 ? "z-30" : ""
           } p-section-mobile pt-0 pb-10 md:p-section-xl 2xl:p-section-2xl 2xl:w-[70%] 2xl:mx-auto  text-green_yellow overflow-hidden`}
       >
         <div className=" md:pt-16 font-tusker text-tusker-home-text-mobile md:text-tusker-home-text md:leading-[90px]">
@@ -200,7 +238,10 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
           </motion.div>{" "}
           I build visually appealing and user-friendly web experiences.
         </div>
-        <div className="self-end relative w-[12rem] h-[12rem] xl:w-[18rem] xl:h-[18rem] bg-transparent">
+        <div ref={circleRef} style={{
+          transform: `translateY(${translateY ?? 0}px)`,
+        }}
+          className="self-end relative w-[12rem] h-[12rem] xl:w-[18rem] xl:h-[18rem] bg-transparent">
           <div className="absolute top-0 left-0  w-full h-full bg-transparent">
             <CircularPathText
               text="FRONTEND >> BACKEND >> DEVOPS >>"

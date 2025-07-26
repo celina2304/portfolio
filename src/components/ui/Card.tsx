@@ -19,13 +19,14 @@ export const Card: React.FC<projectCardProps> = (props) => {
         duration: 0.5,
         delay: (index + 1) * 0.1, // Delay applied only when the element is in view
       }}
-      className={`min-h-full bg-transparent`}
+      className={`min-h-full m-auto bg-transparent`}
     >
       <div className="cursor-pointer hover:scale-[1.02] rounded-lg duration-200 ease-in-out hover:shadow-projectCard relative min-h-full flex flex-col max-w-sm 2xl:max-w-screen-2xl border-2 border-green_yellow"
       onClick={() => {
         window.open(projectDetails.link, "_blank");
       }}>
-        <img
+        <img 
+          loading="lazy"
           className="w-full border-b-2 border-green_yellow rounded-t-lg"
           src={projectDetails.images[0]}
           // src="https://tailwindcss.com/img/card-top.jpg"
