@@ -1,63 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Flow+Circular&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-@font-face {
-  font-family: 'TuskerGrotesk';
-  src: url('./assets/fonts/tuskergrotesk/TuskerGrotesk-6600Semibold.woff2') format('woff2'),
-       url('./assets/fonts/tuskergrotesk/TuskerGrotesk-6600Semibold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'TuskerGrotesk';
-  src: url('./assets/fonts/tuskergrotesk/TuskerGrotesk-6500Medium.woff2') format('woff2'),
-       url('./assets/fonts/tuskergrotesk/TuskerGrotesk-6500Medium.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'TuskerGrotesk';
-  src: url('./assets/fonts/tuskergrotesk/TuskerGrotesk-5500Medium.woff2') format('woff2'),
-       url('./assets/fonts/tuskergrotesk/TuskerGrotesk-5500Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-}
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   letter-spacing: 0.05rem;
-  font-family: theme('fontFamily.poppins');
-  background-color: theme('colors.jett-black');
-  color: theme('colors.green_yellow.DEFAULT');
+  font-family: var(--font-poppins);
+  color: var(--primary-text);
 }
 
-/* ----------- scrollbar ----------- */
-
-::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+body{
+  background-color: var(--background);
 }
 
-::-webkit-scrollbar-track {
-  background: #000;
-  /* border: 1px solid theme('colors.green_yellow.DEFAULT'); */
+section{
+  @apply max-w-5xl m-auto p-section-mobile md:p-section-xl;
 }
 
-::-webkit-scrollbar-thumb {
-  background: theme('colors.green_yellow.DEFAULT');
+.heading {
+  @apply font-medium uppercase text-2xl lg:text-3xl py-3 text-center;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: theme('colors.green_yellow.300');
+.paragraph {
+  @apply font-light text-base 2xl:text-2xl;
+}
+
+.underline-animation {
+  position: relative;
+  display: inline-block;
 }
 
 .underline-animation:after {
@@ -68,7 +44,7 @@
   position: absolute;
   width: 0%;
   height: 2px;
-  background-color: var(--underline-color, theme('colors.green_yellow.DEFAULT'));
+  background-color: var(--underline-color, var(--primary-accent));
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: width, left;
@@ -80,10 +56,24 @@
   left: 0%;
 }
 
-.underline-animation.underline-green_yellow::after {
-  --underline-color: theme('colors.green_yellow.DEFAULT');
+/* Variant classes for different underline colors */
+.underline-animation.underline-primary-accent::after {
+  --underline-color: var(--primary-accent);
 }
 
-.underline-animation.underline-black::after {
-  --underline-color: theme('colors.black'); 
+.underline-animation.underline-secondary-accent::after {
+  --underline-color: var(--secondary-accent);
+}
+
+.underline-animation.underline-tertiary-accent::after {
+  --underline-color: var(--tertiary-accent);
+}
+
+.underline-animation.underline-text::after {
+  --underline-color: var(--primary-text);
+}
+
+/* Custom underline color utility */
+.underline-animation.underline-custom::after {
+  --underline-color: var(--custom-underline-color);
 }

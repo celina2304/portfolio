@@ -91,40 +91,23 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
 
   return (
     <motion.nav
-      className="absolute md:hidden top-0 left-0 bottom-0 bg-transparent w-[250px] h-[80px]"
+      className="absolute md:hidden inset-0 w-[250px] h-[80px]"
       initial={false}
       animate={isOpen ? "open" : "closed"}
       custom={innerHeight}
     >
       <motion.div
-        className={`absolute top-0 left-0 bottom-0 w-[250px] h-[100vh] ${
-          window.scrollY <= innerHeight ? "bg-black" : "bg-green_yellow"
-        } `}
+        className={`absolute inset-0 w-48 h-[100vh] bg-background border-r-[1.5px] border-primary-text`}
         variants={sidebarVariants}
       />
       <motion.ul
-        className={`p-6 absolute bg-transparent flex flex-col gap-5 top-[50px] w-[250px] h-[100vh]`}
+        className={`p-6 absolute  flex flex-col gap-5 top-[50px] w-[250px] h-[100vh]`}
         variants={navigationVariants}
       >
-        <motion.li
-          className="cursor-pointer bg-transparent"
-          variants={menuItemVariants}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          key={`menu-item-mobile-head-logo`}
-        >
-          <div
-            className={`${
-              colorVal ? "text-green_yellow" : "text-black"
-            } font-tusker text-tusker-subheading2 bg-transparent `}
-          >
-            CELINA
-          </div>
-        </motion.li>
         {pages.map((i, pageIndex) => {
           return (
             <motion.li
-              className="cursor-pointer bg-transparent"
+              className="cursor-pointer "
               variants={menuItemVariants}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -132,9 +115,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
               key={`menu-item-mobile-${pageIndex}`}
             >
               <div
-                className={`${
-                  colorVal ? "text-green_yellow" : "text-black"
-                } bg-transparent `}
+                className={``}
               >
                 {i.title}
               </div>
@@ -142,13 +123,13 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
           );
         })}
         <motion.li
-          className="cursor-pointer bg-transparent"
+          className="cursor-pointer "
           variants={menuItemVariants}
           key={`menu-item-mobile-head-github-button`}
         >
-          <Link to={LINKS.GITHUB} className="flex items-center bg-transparent">
+          <Link to={LINKS.GITHUB} className="flex items-center ">
             <Button
-              onClick={() => {}}
+              onClick={() => { }}
               type="button"
               variant={`${colorVal ? "primary" : "light_primary"}`}
               label="GITHUB ->"
@@ -158,13 +139,13 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
       </motion.ul>
       <button
         onClick={() => toggleOpen()}
-        className="absolute cursor-pointer top-[16px] left-[27px] w-[50px] h-[50px] bg-transparent rounded-[50%]"
+        className="absolute cursor-pointer left-[40px] top-[40px] -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] rounded-full flex items-center justify-center"
       >
         <svg
           width="23"
           height="23"
           viewBox="0 0 23 23"
-          className="bg-transparent"
+          className="text-center"
         >
           <Path
             variants={{
@@ -173,10 +154,11 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
               },
               open: { d: "M 3 16.5 L 17 2.5" },
             }}
-            stroke={colorVal ? "#b0fe76" : "#000000"}
+            // stroke={colorVal ? "var(--color-primary-text)" : "var(--color-primary-accent)"}
+            stroke={colorVal ? "var(--primary-text)" : "var(--primary-accent)"}
           />
           <Path
-            stroke={colorVal ? "#b0fe76" : "#000000"}
+            stroke={colorVal ? "var(--primary-text)" : "var(--primary-accent)"}
             d="M 2 9.423 L 20 9.423"
             variants={{
               closed: {
@@ -189,7 +171,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
             transition={{ duration: 0.1 }}
           />
           <Path
-            stroke={colorVal ? "#b0fe76" : "#000000"}
+            stroke={colorVal ? "var(--primary-text)" : "var(--primary-accent)"}
             variants={{
               closed: {
                 d: "M 2 16.346 L 20 16.346",

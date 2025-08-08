@@ -9,24 +9,23 @@ import ResumeSection from "../components/Home/ResumeSection";
 import useTrackSectionDetails from "../hooks/useTrackSectionStart";
 
 // constants;
-import sections from "../constants/sections";
+// import sections from "../constants/sections";
+import pages from "../constants/pages";
+import ParallaxSection from "../components/Home/dummy";
 
 const Home: React.FC = () => {
-  useTrackSectionDetails(sections.hero);
-  useTrackSectionDetails(sections.about);
-  useTrackSectionDetails(sections.project);
-  useTrackSectionDetails(sections.skills);
-  useTrackSectionDetails(sections.contact);
-  useTrackSectionDetails(sections.resume);
+  const sections = pages.find((page) => page.title == "Home")?.sections ?? null;
+  sections?.forEach((section) => useTrackSectionDetails(section.sectionId));
+  
 
   return (
     <>
-      <HeroSection id={sections.hero} />
-      <AboutSection id={sections.about} />
-      <ProjectSection id={sections.project} />
-      <SkillsSection id={sections.skills} />
-      <ContactMeSection id={sections.contact} />
-      <ResumeSection id={sections.resume} />
+      <HeroSection id={sections?.[0]?.sectionId ?? "hero-section-home"} />
+      <AboutSection id={sections?.[1]?.sectionId ?? "about-section-home"} />
+      <ProjectSection id={sections?.[2]?.sectionId ?? "project-section-home"} />
+      <SkillsSection id={sections?.[3]?.sectionId ?? "skills-section-home"} />
+      <ContactMeSection id={sections?.[4]?.sectionId ?? "contactme-section-home"} />
+      <ResumeSection id={sections?.[5]?.sectionId ?? "resume-section-home"} />
     </>
   );
 }

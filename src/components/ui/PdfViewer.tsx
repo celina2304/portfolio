@@ -19,16 +19,9 @@ const PdfViewer: React.FC<PdfProps> = (props) => {
   return (
     <>
       {innerWidth && (
-        <Document className={"bg-transparent"} file={props.pdf}>
+        <Document className={""} file={props.pdf}>
           <Page
-            // width={
-            //   innerWidth <= 450
-            //     ? innerWidth <= 320
-            //       ? innerWidth * 0.6
-            //       : innerWidth * 0.7
-            //     : 500
-            // }
-            width={innerWidth <= 450 ? innerWidth * 0.7 : 500}
+            width={innerWidth <= 450 ? innerWidth * 0.7 : 450}
             renderAnnotationLayer={false}
             renderTextLayer={false}
             pageNumber={1}

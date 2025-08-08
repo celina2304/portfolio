@@ -1,5 +1,5 @@
+// import { Link, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-// import icon from "../assets/react.svg";
 import pages from "../constants/pages";
 import Button from "./ui/Button";
 import { LINKS } from "../constants/links";
@@ -7,63 +7,62 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { easeInOut, motion } from "framer-motion";
 import MobileNav from "./ui/MobileNav";
+import logo from "../assets/images/logo/portfoliologo-black.svg"
 import useScrollToSection from "../hooks/useScrollToSection";
-// import Switch from "../components/ui/Switch";
-import logo from "../assets/images/logo/portfoliologo.png"
 
 export default function Header() {
+  // const location = useLocation();
   const scrollToSection = useScrollToSection();
   const innerHeight = useSelector(
     (state: RootState) => state.dimensions.innerHeight
   );
   return (
-    <header
+    <header 
+      id="header"
       className={`${
-        window.scrollY <= innerHeight
+        window.scrollY <= innerHeight && window.location.pathname === "/"
           ? ""
-          : "backdrop-blur-sm md:border-b md:border-green_yellow"
-      } bg-transparent sticky md:h-auto top-0 left-0 z-[100] font-medium uppercase flex items-center justify-between md:p-2 2xl:p-10`}
+          : "backdrop-blur-sm shadow-md"
+        } sticky md:h-auto inset-0 z-[100] font-medium uppercase flex items-center justify-between md:p-2 2xl:p-10`}
     >
-      <Link to="/" className="hidden md:block bg-transparent pl-5">
+      <Link to="/" className="hidden md:block pl-5">
         <img
           loading="lazy"
           src={logo}
           alt="icon"
-          className="h-[50px] w-auto bg-transparent"
+          className="h-[50px] w-auto"
         />
       </Link>
-      <ul className="hidden md:flex bg-transparent items-center justify-between text-sm gap-5 lg:gap-10">
-        {pages?.map((page, index) => (
+      <ul className="hidden md:flex items-center justify-between text-sm gap-5 lg:gap-10">
+        {pages?.map((page, index) => {
+          if(page.path === "/") return;
+          return(
           <li
             key={`header-page${page.title}_${index}`}
-            className="bg-transparent cursor-pointer"
-            onClick={() => scrollToSection(page.scroll || "")}
+            className="cursor-pointer"
+          onClick={() => scrollToSection(page?.scroll || "")}
           >
-            {/* <Link to={page.path}> */}
-            <motion.div
-              initial={{
-                y: 150,
-                opacity: 0,
-              }}
-              animate={{
-                y: 0,
-                opacity: 1,
-              }}
-              transition={{
-                duration: 0.7 + 0.1 * index,
-                ease: easeInOut,
-              }}
-              className={`underline-animation ${
-                window.scrollY <= innerHeight * 1.5
-                  ? "text-black underline-black"
-                  : "text-green_yellow underline-green_yellow"
-              } bg-transparent 2xl:text-3xl relative`}
-            >
-              {page.title}
-            </motion.div>
-            {/* </Link> */}
+            {/* <Link to={page.path}>
+            </Link> */}
+              <motion.div
+                initial={{
+                  y: 150,
+                  opacity: 0,
+                }}
+                animate={{
+                  y: 0,
+                  opacity: 1,
+                }}
+                transition={{
+                  duration: 0.7 + 0.1 * index,
+                  ease: easeInOut,
+                }}
+                className={`underline-animation underline-primary-accent 2xl:text-3xl relative`}
+              >
+                {page.title}
+              </motion.div>
           </li>
-        ))}
+        )})}
       </ul>
       <motion.div
         initial={{
@@ -76,11 +75,14 @@ export default function Header() {
           duration: 0.7,
           ease: easeInOut,
         }}
-        className="hidden md:flex bg-transparent shadow-lg items-center justify-end gap-5 text-sm"
+        className="hidden md:flex items-center justify-end gap-4"
       >
-        {/* dark mode vs light mode 
-            <Switch /> */}
-        <Link to={LINKS.GITHUB} className="bg-transparent" >
+        <Link 
+          to={LINKS.GITHUB} 
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit GitHub profile"
+        >
           <Button onClick={() => {}} type="button" label="GITHUB ->" />
         </Link>
       </motion.div>

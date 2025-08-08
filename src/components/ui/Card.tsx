@@ -15,40 +15,46 @@ export const Card: React.FC<projectCardProps> = (props) => {
         y: 0,
         opacity: 1,
       }}
-      transition={{
-        duration: 0.5,
-        delay: (index + 1) * 0.1, // Delay applied only when the element is in view
+      whileHover={{
+        y: -8,
+        // scale: 1.01,
+        transition: {
+          type: "spring",
+          stiffness: 1000,
+          damping: 60,
+          mass: 0.2
+        }
       }}
-      className={`min-h-full m-auto bg-transparent`}
+      className="h-full"
     >
-      <div className="cursor-pointer hover:scale-[1.02] rounded-lg duration-200 ease-in-out hover:shadow-projectCard relative min-h-full flex flex-col max-w-sm 2xl:max-w-screen-2xl border-2 border-green_yellow"
+      <div className="cursor-pointer rounded-lg duration-200 ease-in-out hover:shadow-projectCard relative h-full max-w-sm 2xl:max-w-screen-2xl border-[1.5px] border-primary-text flex flex-col"
       onClick={() => {
         window.open(projectDetails.link, "_blank");
       }}>
         <img 
           loading="lazy"
-          className="w-full border-b-2 border-green_yellow rounded-t-lg"
+          className="w-full h-40 object-cover border-b-[1.5px] border-primary-text rounded-t-lg flex-shrink-0"
           src={projectDetails.images[0]}
           // src="https://tailwindcss.com/img/card-top.jpg"
           alt="Sunset in the mountains"
         />
-        <div className="p-3 relative flex flex-col flex-grow overflow-hidden">
-          <div
-            className={`font-bold font-tusker uppercase text-xl 2xl:text-tusker-home-text-mobile bg-green_yellow relative z-30 mb-2 bg-clip-text text-transparent`}
+        <div className="p-2 flex flex-col flex-1">
+          <h4
+            className={`font-semibold uppercase text-lg border-primary-text relative z-30 flex-shrink-0`}
           >
             {projectDetails.heading}
-          </div>
+          </h4>
           <p
-            className={`bg-green_yellow relative z-20 bg-clip-text text-xs 2xl:text-2xl text-transparent`}
+            className={`relative z-20 text-xs 2xl:text-2xl flex-1`}
           >
             {projectDetails.description}
           </p>
         </div>
-        <div className="p-3 flex rounded-b-lg gap-1 items-center flex-wrap justify-start ">
+        <div className="p-3 flex rounded-b-lg gap-1 items-center flex-wrap justify-start flex-shrink-0">
           {projectDetails.skills.map((skill, skillIndex) => (
             <span
               key={`project-card${index}-skill${skillIndex}`}
-              className="bg-green_yellow text-black rounded-md px-1 py-[0.05rem] text-xs 2xl:text-3xl"
+              className="border-primary-accent border-2 rounded-md px-1 py-[0.05rem] text-xs 2xl:text-3xl"
             >
               {skill}
             </span>

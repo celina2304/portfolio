@@ -1,8 +1,9 @@
 // import { useState } from "react";
+import { motion } from "framer-motion";
 import { FunctionalComponentProps } from "../../types/components";
 
 // constants
-import skillSet from "../../constants/skills";
+import skills from "../../constants/skills";
 
 const SkillsSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   // const [activeSkill, setActiveSkill] = useState<number>(-1);
@@ -10,34 +11,46 @@ const SkillsSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   return (
     <section
       id={id}
-      className="p-section-mobile md:p-section-xl 2xl:p-section-2xl  lg:min-h-[100vh] relative text-green_yellow"
+      className="relative text-primary-accent"
     >
-      <div className="text-center bg-transparent font-tusker uppercase text-tusker-home-text-mobile md:text-tusker-subheading2 2xl:text-tusker-heading 2xl:pb-10 px-2 text-green_yellow">
+      <motion.h2 initial={{
+        y: 10,
+        opacity: 0
+      }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 1,
+          type: "spring",
+          stiffness: 300,
+          damping: 25,
+          mass: 0.8
+        }} className="heading">
         Skills I have
-      </div>
+      </motion.h2>
       <br />
-      <div className="flex flex-wrap justify-center gap-10">
-        {skillSet.map((skill, skillIndex) => {
-          return (
-            <img
-              loading="lazy"
-              key={`${skillIndex}-skill-skills-section`}
-              src={skill.dark}
-              className="w-[100px] h-[100px] m-3 md:m-5"
-            />
-            // <img src={skill.light} className="h-[80px] w-auto bg-green-100" />
-          );
-        })}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-6 px-8">
+        {skills.map((skill, index) => (
+          <motion.div
+            key={index}
+            initial={{
+              y: 10,
+              opacity: 0
+            }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: (index + 1) * 0.07,
+              type: "spring",
+              stiffness: 300,
+              damping: 25,
+              mass: 0.8
+            }}
+            className="flex flex-col items-center"
+          >
+            <img src={skill.icon} loading="lazy" alt={skill.name} className="w-16 h-16 object-contain" />
+            <p className="mt-2">{skill.name}</p>
+          </motion.div>
+        ))}
       </div>
-      {/* <div className="pt-10 flex items-center justify-center">
-        <Button
-          onClick={() => {
-            // navigate("/projects")
-          }}
-          type="button"
-          label="View more"
-        />
-      </div> */}
     </section>
   );
 };

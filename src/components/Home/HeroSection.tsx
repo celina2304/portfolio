@@ -1,262 +1,120 @@
-import { motion } from "framer-motion";
-
-// redux
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-
-// hooks
-import useScrollToNextSection from "../../hooks/useScrollInsideSection";
-import { useEffect, useState } from "react";
-
-// ui components
-import CircularPathText from "../ui/CircularPathText";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 // types
 import { FunctionalComponentProps } from "../../types/components";
-import { MainMotionTextProps } from "../../types/components/motionText";
-import { useRef } from "react";
-import useSectionTranslate from "../../hooks/useSectionTranslate";
-
-const baseClass = {
-  font: "uppercase inline-block bg-transparent text-tusker-heading-mobile md:text-tusker-heading text-black font-tusker",
-  base: "h-[100vh] w-[55vw] flex flex-col justify-center",
-  left: "text-right pr-2 md:pr-4",
-  right: "pl-2 md:pl-4",
-};
-
-const MainMotionText: React.FC<MainMotionTextProps> = (props) => {
-  return (
-    <motion.div
-      initial={{
-        y: 150,
-        opacity: 0,
-      }}
-      animate={{
-        y: 0,
-        opacity: 1,
-      }}
-      transition={{
-        duration: 0.5,
-        delay: props.delay,
-      }}
-      className={`${baseClass.font}`}
-    >
-      {props.text}
-    </motion.div>
-  );
-};
 
 const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
-  const { scrollDirection } = useSelector(
-    (state: RootState) => state.scroll
-  );
-  const { innerHeight, innerWidth } = useSelector(
-    (state: RootState) => state.dimensions
-  );
-  const sectionDetails = useSelector(
-    (state: RootState) => state.sectionScroll.sections
-  );
-  const [circleHeight, setCircleHeight] = useState<number>(0);
-  const circleRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
 
-  const translateY = (useSectionTranslate(id) ?? 0) - circleHeight * 1.3;
+  const [headerHeight, setHeaderHeight] = useState<number>(0);
 
-  const left1Ref = useRef<HTMLDivElement>(null);
-  const left2Ref = useRef<HTMLDivElement>(null);
-  const right1Ref = useRef<HTMLDivElement>(null);
-  const right2Ref = useRef<HTMLDivElement>(null);
-
+  // calculate header height
   useEffect(() => {
-    const handleScroll = () => {
-      const baseScroll = 50;
-      const effectiveScroll = Math.max(window.scrollY - baseScroll, 0);
+    const header = document.getElementById("header");
+    setHeaderHeight(header?.offsetHeight ?? 0);
 
-      // Move left images to the left (negative X)
-      if (left1Ref.current) left1Ref.current.style.transform = `translateX(${-effectiveScroll}px)`;
-      if (left2Ref.current) left2Ref.current.style.transform = `translateX(${-effectiveScroll}px)`;
+    const observer = new ResizeObserver(() => {
+      setHeaderHeight(header?.offsetHeight ?? 0);
+    })
 
-      // Move right images to the right (positive X)
-      if (right1Ref.current) right1Ref.current.style.transform = `translateX(${effectiveScroll}px)`;
-      if (right2Ref.current) right2Ref.current.style.transform = `translateX(${effectiveScroll}px)`;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const updateHeight = () => {
-      if(circleRef.current){
-        setCircleHeight(circleRef.current.offsetHeight)
-      }
+    if (header) {
+      observer.observe(header);
     }
-    updateHeight();
-    window.addEventListener('resize', updateHeight);
-    return () => window.removeEventListener('resize', updateHeight);
-  }, [circleRef])
+    return () => observer.disconnect();
+  }, [])
 
-  const currentSection = sectionDetails.find((item) => item.sectionId === id);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
 
-  useScrollToNextSection({
-    scrollStart: currentSection?.startPosition,
-    scrollEnd:
-      currentSection?.sectionHeight !== undefined
-        ? innerHeight * 2
-        : undefined,
-  });
+  })
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+  const bgTransparentY = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
 
   return (
     <section
+      ref={heroRef}
       id={id}
-      className="md:-mt-[85px] 2xl:-mt-[140px] relative w-full"
+      className="max-w-full p-0 md:p-0 h-screen inset-0 relative w-full overflow-hidden"
+      style={{
+        marginTop: `-${headerHeight ?? 0}px`
+      }}
     >
       {/* Sticky container */}
-      <div id="hero-front" className="sticky bg-transparent top-0 z-20 h-[100vh] overflow-hidden flex">
+      <div id="hero-front-web" className="hidden md:flex text-3xl md:text-5xl h-screen">
         <motion.div
           style={{
-            backgroundColor: "transparent",
-            backgroundImage: `url(${innerWidth <= 450
-              ? '/waves/waves3-mob.svg'
-              : '/waves/waves3.svg'
-              })`,
-            backgroundSize: "cover",
-            backgroundPosition: "left top",
-            color: "#000000",
-            // transform: calculateTranslateVal("left"),
-          }}
-          ref={left2Ref}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
-          // className={`${baseClass.base} ${baseClass.left}`}
-          className="absolute h-[100vh] w-[50vw] top-0 -z-20 right-2"
-        ></motion.div>
-        <motion.div
-          style={{
-            backgroundColor: "transparent",
-            backgroundImage: `url(${innerWidth <= 450
-              ? '/waves/waves4-mob.svg'
-              : '/waves/waves4.svg'
-              })`,
-            backgroundSize: "cover",
-            backgroundPosition: "right top",
-            color: "#000000",
-            // transform: calculateTranslateVal("right"),
-          }}
-          ref={right2Ref}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
-          // className={`${baseClass.base} ${baseClass.left}`}
-          className="absolute h-[100vh] w-[50vw] top-0 -z-20 left-2"
-        ></motion.div>
-        <motion.div
-          style={{
-            backgroundColor: "transparent",
-            backgroundImage: `url(${innerWidth <= 450
-              ? '/waves/waves1-mob.svg'
-              : '/waves/waves1.svg'
-              })`,
-            backgroundSize: "cover",
+            y: bgY,
             backgroundPosition: "right",
-            color: "#000000",
-            // transform: calculateTranslateVal("left"),
           }}
-          ref={left1Ref}
           transition={{ duration: 0.4, ease: "easeInOut" }}
-          className={`${baseClass.base} ${baseClass.left}`}
-        >
-          <MainMotionText text="HI" delay={0.1} />
-          <br />
-          <MainMotionText text="THERE!" delay={0.2} />
-        </motion.div>
+          className={`bg-[url(/waves/waves1.svg)] bg-cover h-screen w-[55vw] flex flex-col justify-center transform scale-y-[-1]`}
+        ></motion.div>
         <motion.div
           style={{
-            backgroundColor: "transparent",
-            backgroundImage: `url(${innerWidth <= 450
-              ? '/waves/waves2-mob.svg'
-              : '/waves/waves2.svg'
-              })`,
-            backgroundSize: "cover",
+            y: bgY,
             backgroundPosition: "left",
-            zIndex: 20,
-            color: "#000000",
-            // transform: calculateTranslateVal("right"),
           }}
-          ref={right1Ref}
           transition={{ duration: 0.4, ease: "easeInOut" }}
-          className={`${baseClass.base} ${baseClass.right}`}
-        >
-          <MainMotionText text="I'M" delay={0.15} />
-          <br />
-          <MainMotionText text="CELINA" delay={0.25} />
-        </motion.div>
-      </div>
-      <div id="hero-blank" className="h-[100vh]"></div>
-      <div
-        id="hero-description"
-        className={`min-h-[100vh] md:min-h-[10vh] lg:min-h-[100vh] relative flex flex-col justify-end items-center gap-10 md:justify-evenly ${window.scrollY > innerHeight * 2 ? "z-30" : ""
-          } p-section-mobile pt-0 pb-10 md:p-section-xl 2xl:p-section-2xl 2xl:w-[70%] 2xl:mx-auto  text-green_yellow overflow-hidden`}
-      >
-        <div className=" md:pt-16 font-tusker text-tusker-home-text-mobile md:text-tusker-home-text md:leading-[90px]">
-          A{" "}
-          <motion.div
-            initial={{
-              color: "var(--color-green_yellow-DEFAULT)",
-              backgroundColor: "#000000",
-              opacity: 0,
-            }}
-            whileInView={{
-              color: "#000000",
-              backgroundColor: "var(--color-green_yellow-DEFAULT)",
-              opacity: 1,
-            }}
+          className={`bg-[url(/waves/waves2.svg)] bg-cover h-screen w-[55vw] flex flex-col justify-center transform scale-y-[-1]`}
+        ></motion.div>
+        <motion.div style={{ y: textY }} className="absolute inset-0 h-screen max-w-2xl text-center m-auto flex flex-col gap-3 items-center justify-center">
+          <motion.h1 initial={{
+            y: 20,
+            opacity: 0
+          }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 1,
-            }}
-            viewport={{ once: false, amount: 0.5 }}
-            className={`font-tusker bg-green_yellow text-black inline`}
-          >
-            Fullstack developer
-          </motion.div>{" "}
-          specializing in{" "}
-          <motion.div
-            initial={{
-              color: "var(--color-green_yellow-DEFAULT)",
-              backgroundColor: "#000000",
-              opacity: 0,
-            }}
-            whileInView={{
-              color: "#000000",
-              backgroundColor: "var(--color-green_yellow-DEFAULT)",
-              opacity: 1,
-            }}
+              duration: 0.7,
+              type: "spring",
+              stiffness: 300,
+              damping: 25,
+              mass: 0.8
+            }} className="">Hi I'm CELINA</motion.h1>
+          <motion.h3 initial={{
+            y: 20,
+            opacity: 0
+          }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 1,
               delay: 0.2,
-            }}
-            viewport={{ once: false, amount: 0.5 }}
-            className={`font-tusker  text-black inline`}
-          >
-            MERN, Next.js, Tailwind CSS.
-          </motion.div>{" "}
-          I build visually appealing and user-friendly web experiences.
-        </div>
-        <div ref={circleRef} style={{
-          transform: `translateY(${translateY ?? 0}px)`,
-        }}
-          className="self-end relative w-[12rem] h-[12rem] xl:w-[18rem] xl:h-[18rem] bg-transparent">
-          <div className="absolute top-0 left-0  w-full h-full bg-transparent">
-            <CircularPathText
-              text="FRONTEND >> BACKEND >> DEVOPS >>"
-              cls="text-green_yellow"
-              direction={scrollDirection === "up" ? "right" : "left"}
-            />
-          </div>
-          <div className="absolute top-[1.75rem] left-[1.75rem] xl:top-[2.6rem] xl:left-[2.6rem] w-[70%] h-[70%] bg-transparent">
-            <CircularPathText
-              text="FRONTEND << BACKEND << DEVOPS <<"
-              cls="text-green_yellow"
-              direction={scrollDirection === "up" ? "left" : "right"}
-            />
-          </div>
-        </div>
+              duration: 0.8,
+              type: "spring",
+              stiffness: 300,
+              damping: 25,
+              mass: 0.8
+            }} className="text-lg italic">"I design and build friendly, functional websites."</motion.h3>
+          <motion.p initial={{
+            y: 20,
+            opacity: 0
+          }}
+          whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.4,
+              duration: 0.9,
+              type: "spring",
+              stiffness: 300,
+              damping: 25,
+              mass: 0.8
+            }} className="text-base">From sleek portfolios to complex web apps — I turn ideas into smooth, scroll-worthy experiences.</motion.p>
+        </motion.div>
+        <motion.div style={{
+          y: bgTransparentY
+        }} className="absolute bottom-0 h-1/5 w-screen bg-gradient-to-t from-background to-transparent" />
+      </div>
+      <div id="hero-front-mob" className="md:hidden h-screen flex items-center justify-center">
+        <img src="/waves/waves1-mob.svg" className="h-full w-auto transform scale-y-[-1]" />
+        <img src="/waves/waves2-mob.svg" className="h-full w-auto transform scale-y-[-1]" />
+        <motion.div style={{ y: textY }} className="absolute inset-0 h-screen w-screen flex flex-col gap-3 items-center justify-center">
+          <h2 className="heading">
+            Welcome To <br />
+            My Portfolio
+          </h2>
+        </motion.div>
+        <motion.div className="absolute bottom-0 h-1/3 w-screen bg-gradient-to-t from-background/80 to-transparent" />
       </div>
     </section>
   );

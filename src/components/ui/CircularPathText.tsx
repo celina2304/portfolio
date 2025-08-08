@@ -6,7 +6,7 @@ import { CirclePathTextProps } from "../../types/components/circularPath";
 const CircularPathText: React.FC<CirclePathTextProps> = (props) => {
   const {
     text,
-    color = "var(--color-green_yellow-DEFAULT)",
+    color = "var(--color-primary-accent)",
     cls,
     direction = "left",
   } = props;
@@ -17,7 +17,7 @@ const CircularPathText: React.FC<CirclePathTextProps> = (props) => {
   }, [direction]);
   return (
     <motion.div
-      className="absolute bg-transparent w-full h-full"
+      className="absolute w-full h-full"
       animate={{ rotate: derivedDirection === "left" ? 360 : -360 }}
       transition={{
         repeat: Infinity,
@@ -26,7 +26,7 @@ const CircularPathText: React.FC<CirclePathTextProps> = (props) => {
       }}
     >
       <svg
-        className="bg-transparent absolute w-full h-full"
+        className=" absolute w-full h-full"
         viewBox="0 0 100 100"
         xmlns="http://www.w3.org/2000/svg"
       >

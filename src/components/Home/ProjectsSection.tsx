@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 //icons
 import { ArrowRightIcon } from "@heroicons/react/16/solid";
-
-// redux
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
 
 // types and constants
 import { FunctionalComponentProps } from "../../types/components";
@@ -13,56 +10,33 @@ import projectsData from "../../constants/projects";
 
 // ui components
 import { Card } from "../ui/Card";
-import Blob from "../ui/Blob";
-import useSectionTranslate from "../../hooks/useSectionTranslate";
-// import Button from "../ui/Button";
 
 
 const ProjectSection: React.FC<FunctionalComponentProps> = ({ id }) => {
-  // const { innerWidth } = useSelector((state: RootState) => state.dimensions);
-  const sectionDetails = useSelector(
-    (state: RootState) => state.sectionScroll.sections
-  );
-  const [translateVal, setTranslateVal] = useState<string>("");
-  const translateY = useSectionTranslate(id);
-  const currentSection = sectionDetails.find((item) => item.sectionId === id);
+  const projectRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const calculateTranslateVal = () => {
-      if (
-        currentSection !== undefined &&
-        window.scrollY >= currentSection.startPosition - currentSection.sectionHeight &&
-        window.scrollY <= currentSection.endPosition + currentSection.sectionHeight
-      ) {
-        const baseScroll = currentSection.sectionHeight;
-        const effectiveScroll = (window.scrollY - baseScroll) / 6;
+  const { scrollYProgress } = useScroll({
+    target: projectRef,
+    offset: ["start start", "end start"]
+  });
 
-        const effectiveSectionScroll = (window.scrollY-currentSection.startPosition)/6;
-
-        console.log("effectiveScroll ", effectiveSectionScroll);
-
-        setTranslateVal(`translateY(${effectiveScroll}px)`);
-        // setTranslateSectionVal(`translateY(${effectiveSectionScroll}px)`);
-      }
-    };
-    calculateTranslateVal();
-  }, [currentSection, scroll]);
+  const translateVal = useTransform(scrollYProgress, [0, 1], ["-2%", "2%"]);
 
   return (
     <section
       id={id}
-      className="p-section-mobile md:p-section-xl 2xl:p-section-2xl relative overflow-x-clip overflow-y-visible border-none text-green_yellow"
+      ref={projectRef}
+      className="p-section-mobile md:p-section-xl relative"
     >
-      <div style={{
-        transform: `translateY(${translateY ?? 0}px)`,
-        // transform: `${translateSectionVal}`,
-      }} className="relative bg-transparent z-20">
-        <span className="bg-transparent font-tusker uppercase text-tusker-home-text-mobile md:text-tusker-subheading2 2xl:text-tusker-heading md:px-2 ">
+      <motion.div style={{ y: translateVal }} className="relative z-20">
+        <motion.h2 initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }} className="heading">
           Projects I've worked on
-          <ArrowRightIcon className="h-[80px] fill-green_yellow bg-transparent w-auto inline" />
-        </span>
+          <ArrowRightIcon className="h-11 fill-primary-accent  w-auto inline" />
+        </motion.h2>
         <br />
-        <div className="bg-transparent grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-5 md:mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {projectsData.map((project, projectIndex) => {
             return (
               <Card
@@ -73,7 +47,7 @@ const ProjectSection: React.FC<FunctionalComponentProps> = ({ id }) => {
             );
           })}
         </div>
-        <div className="pt-10 bg-transparent flex items-center justify-center">
+        <div className="pt-10  flex items-center justify-center">
           {/* <Button
             onClick={() => {
               // navigate("/projects")
@@ -82,23 +56,8 @@ const ProjectSection: React.FC<FunctionalComponentProps> = ({ id }) => {
             label="View more"
           /> */}
         </div>
-      </div>
-      <div
-        style={{
-          transform: `${translateVal} scale(1.5) `,
-        }}
-        className="absolute bg-transparent hidden sm:inline sm:-top-24 -right-24 xl:-top-60 z-10"
-      >
-        <Blob variant={1} cls="w-[15rem] h-[15rem]" />
-      </div>
-      <div
-        style={{
-          transform: `${translateVal} scale(1.5) `,
-        }}
-        className="absolute bg-transparent hidden sm:inline sm:top-[25rem] -left-24 lg:top-[8rem] xl:top-[10rem] z-10"
-      >
-        <Blob variant={2} cls="w-[15rem] h-[15rem]" />
-      </div>
+      </motion.div>
+
     </section>
   );
 };
