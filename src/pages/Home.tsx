@@ -11,7 +11,6 @@ import useTrackSectionDetails from "../hooks/useTrackSectionStart";
 // constants;
 // import sections from "../constants/sections";
 import pages from "../constants/pages";
-import ParallaxSection from "../components/Home/dummy";
 
 const Home: React.FC = () => {
   const sections = pages.find((page) => page.title == "Home")?.sections ?? null;

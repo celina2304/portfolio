@@ -1,4 +1,4 @@
-import { motion, MotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 
 interface ContactFormData {
@@ -8,7 +8,7 @@ interface ContactFormData {
   files: File[];
 }
 
-const ContactForm: React.FC = (pops) => {
+const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
