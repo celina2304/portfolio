@@ -40,27 +40,33 @@ const config: Config = {
   },
   plugins: [
     function ({ addBase, theme }) {
-      // Automatically generate CSS custom properties from theme colors and fonts
       const colors = theme('colors');
       const fonts = theme('fontFamily');
-      
-      const customProperties = {
-        // Color variables
-        ...Object.keys(colors).reduce((acc, color) => {
-          acc[`--${color}`] = colors[color];
-          return acc;
-        }, {}),
-        // Font family variables
-        ...Object.keys(fonts).reduce((acc, font) => {
-          acc[`--font-${font}`] = fonts[font].join(', ');
-          return acc;
-        }, {})
+
+      const customProperties = {};
+
+      const flattenColors = (obj, prefix = '') => {
+        Object.keys(obj).forEach(key => {
+          const value = obj[key];
+          if (typeof value === 'string') {
+            customProperties[`--${prefix}${key}`] = value;
+          } else if (typeof value === 'object') {
+            flattenColors(value, `${prefix}${key}-`);
+          }
+        });
       };
+
+      flattenColors(colors);
+
+      Object.keys(fonts).forEach(font => {
+        customProperties[`--font-${font}`] = fonts[font].join(', ');
+      });
 
       addBase({
         ':root': customProperties
       });
-    },
+    }
+
   ],
 }
 

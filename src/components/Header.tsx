@@ -3,27 +3,40 @@ import { Link } from "react-router-dom";
 import pages from "../constants/pages";
 import Button from "./ui/Button";
 import { LINKS } from "../constants/links";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
 import { easeInOut, motion } from "framer-motion";
 import MobileNav from "./ui/MobileNav";
 import logo from "../assets/images/logo/portfoliologo-black.svg"
 import useScrollToSection from "../hooks/useScrollToSection";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   // const location = useLocation();
   const scrollToSection = useScrollToSection();
-  const innerHeight = useSelector(
-    (state: RootState) => state.dimensions.innerHeight
-  );
+  const [headerHeight, setHeaderHeight] = useState<number>(0);
+
+  // calculate header height
+  useEffect(() => {
+    const header = document.getElementById("header");
+    setHeaderHeight(header?.offsetHeight ?? 0);
+
+    const observer = new ResizeObserver(() => {
+      setHeaderHeight(header?.offsetHeight ?? 0);
+    })
+
+    if (header) {
+      observer.observe(header);
+    }
+    return () => observer.disconnect();
+  }, [])
+
   return (
     <header 
       id="header"
       className={`${
-        window.scrollY <= innerHeight && window.location.pathname === "/"
+        window.scrollY <= headerHeight && window.location.pathname === "/"
           ? ""
-          : "backdrop-blur-sm shadow-md"
-        } sticky md:h-auto inset-0 z-[100] font-medium uppercase flex items-center justify-between md:p-2 2xl:p-10`}
+          : "bg-background/50 backdrop-blur-sm shadow-sm"
+        } sticky top-0 md:h-auto z-[100] font-medium uppercase flex items-center justify-between md:p-2 2xl:p-10 transition-all duration-300 ease-in-out`}
     >
       <Link to="/" className="hidden md:block pl-5">
         <img

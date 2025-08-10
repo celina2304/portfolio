@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, useCycle } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 // redux
 import { useSelector } from "react-redux";
@@ -35,16 +36,19 @@ const navigationVariants = {
 const sidebarVariants = {
   open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+    backgroundColor: "var(--background)",
+    // width: "250px",
     transition: {
       type: "spring",
       stiffness: 20,
-      restDelta: 2,
+      // restDelta: 2,
     },
   }),
   closed: {
-    clipPath: "circle(30px at 40px 40px)",
+    clipPath: "circle(25px at 40px 40px)",
+    backgroundColor: "var(--primary-accent)",
     transition: {
-      delay: 0.5,
+      // delay: 0.5,
       type: "spring",
       stiffness: 400,
       damping: 40,
@@ -70,7 +74,7 @@ const menuItemVariants = {
 };
 
 const Path: React.FC<PathProps> = (props) => (
-  <motion.path strokeWidth="3" strokeLinecap="round" {...props} />
+  <motion.path strokeWidth="4" strokeLinecap="round" {...props} />
 );
 
 const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
@@ -78,7 +82,23 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
   const { innerHeight } = useSelector((state: RootState) => state.dimensions);
   // const scrollY = window.scrollY;
   const [isOpen, toggleOpen] = useCycle(false, true);
-  const colorVal = window.scrollY <= innerHeight;
+
+  // Handle click outside to close navigation
+  const navRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isOpen && navRef.current && !navRef.current.contains(event.target as Node)) {
+        toggleOpen();
+      }
+    };
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen, toggleOpen]);
 
   const handleItemClick = (i: number) => {
     toggleOpen();
@@ -91,13 +111,16 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
 
   return (
     <motion.nav
-      className="absolute md:hidden inset-0 w-[250px] h-[80px]"
+      ref={navRef}
+      className={`absolute md:hidden inset-0 w-[250px] h-[80px] ${isOpen? "pointer-events-auto": "pointer-events-none"}`}
       initial={false}
       animate={isOpen ? "open" : "closed"}
       custom={innerHeight}
+      data-mobile-nav
     >
+      {/* Background with clipPath */}
       <motion.div
-        className={`absolute inset-0 w-48 h-[100vh] bg-background border-r-[1.5px] border-primary-text`}
+        className={`absolute inset-0 w-48 h-[100vh] border-r-[1.5px] border-primary-text`}
         variants={sidebarVariants}
       />
       <motion.ul
@@ -131,7 +154,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
             <Button
               onClick={() => { }}
               type="button"
-              variant={`${colorVal ? "primary" : "light_primary"}`}
+              variant="primary"
               label="GITHUB ->"
             />
           </Link>
@@ -155,10 +178,10 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
               open: { d: "M 3 16.5 L 17 2.5" },
             }}
             // stroke={colorVal ? "var(--color-primary-text)" : "var(--color-primary-accent)"}
-            stroke={colorVal ? "var(--primary-text)" : "var(--primary-accent)"}
+            stroke="var(--primary-text)"
           />
           <Path
-            stroke={colorVal ? "var(--primary-text)" : "var(--primary-accent)"}
+            stroke="var(--primary-text)"
             d="M 2 9.423 L 20 9.423"
             variants={{
               closed: {
@@ -171,7 +194,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
             transition={{ duration: 0.1 }}
           />
           <Path
-            stroke={colorVal ? "var(--primary-text)" : "var(--primary-accent)"}
+            stroke="var(--primary-text)"
             variants={{
               closed: {
                 d: "M 2 16.346 L 20 16.346",

@@ -44,24 +44,24 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
       }}
     >
       {/* Sticky container */}
-      <div id="hero-front-web" className="hidden md:flex text-3xl md:text-5xl h-screen">
-        <motion.div
-          style={{
-            y: bgY,
-            backgroundPosition: "right",
-          }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
-          className={`bg-[url(/waves/waves1.svg)] bg-cover h-screen w-[55vw] flex flex-col justify-center transform scale-y-[-1]`}
-        ></motion.div>
+      <div id="hero-front-web" className="hidden md:flex text-3xl md:text-5xl h-screen relative w-full">
         <motion.div
           style={{
             y: bgY,
             backgroundPosition: "left",
           }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
-          className={`bg-[url(/waves/waves2.svg)] bg-cover h-screen w-[55vw] flex flex-col justify-center transform scale-y-[-1]`}
-        ></motion.div>
-        <motion.div style={{ y: textY }} className="absolute inset-0 h-screen max-w-2xl text-center m-auto flex flex-col gap-3 items-center justify-center">
+          className="absolute inset-0 h-full w-full bg-[url(/waves/waves2.svg)] bg-cover transform scale-y-[-1] mix-blend-multiply"
+        />
+        <motion.div
+          style={{
+            y: bgY,
+            backgroundPosition: "right",
+          }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+          className="absolute inset-0 h-full w-full bg-[url(/waves/waves1.svg)] bg-cover transform scale-y-[-1] mix-blend-multiply"
+        />
+        <motion.div style={{ y: textY }} className="absolute inset-0 h-screen max-w-2xl text-center m-auto flex flex-col gap-3 items-center justify-center z-10">
           <motion.h1 initial={{
             y: 20,
             opacity: 0
@@ -103,18 +103,18 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         </motion.div>
         <motion.div style={{
           y: bgTransparentY
-        }} className="absolute bottom-0 h-1/5 w-screen bg-gradient-to-t from-background to-transparent" />
+        }} className="absolute bottom-0 h-1/5 w-screen bg-gradient-to-t from-background to-transparent z-20" />
       </div>
-      <div id="hero-front-mob" className="md:hidden h-screen flex items-center justify-center">
-        <img src="/waves/waves1-mob.svg" className="h-full w-auto transform scale-y-[-1]" />
-        <img src="/waves/waves2-mob.svg" className="h-full w-auto transform scale-y-[-1]" />
-        <motion.div style={{ y: textY }} className="absolute inset-0 h-screen w-screen flex flex-col gap-3 items-center justify-center">
+      <div id="hero-front-mob" className="md:hidden h-screen w-screen flex items-center justify-center overflow-hidden relative">
+        <img src="/waves/waves2-mob.svg" className="absolute inset-0 h-full w-full object-cover" />
+        <img src="/waves/waves1-mob.svg" className="absolute inset-0 h-full w-full object-cover" />
+        <motion.div style={{ y: textY }} className="absolute inset-0 h-screen w-screen flex flex-col gap-3 items-center justify-center z-10">
           <h2 className="heading">
             Welcome To <br />
             My Portfolio
           </h2>
         </motion.div>
-        <motion.div className="absolute bottom-0 h-1/3 w-screen bg-gradient-to-t from-background/80 to-transparent" />
+        <motion.div className="absolute bottom-0 h-1/5 w-screen bg-gradient-to-t from-background to-transparent" />
       </div>
     </section>
   );

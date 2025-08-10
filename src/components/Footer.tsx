@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { LINKS } from "../constants/links";
 import {
   FaLinkedin,
-  FaDiscord,
+  // FaDiscord,
   FaGithub,
   FaEnvelope
 } from "react-icons/fa";
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
     { icon: FaEnvelope, link: "mailto:celina23042001@gmail.com", label: "Email" },
     { icon: FaLinkedin, link: LINKS.LINKEDIN, label: "LinkedIn" },
     { icon: FaGithub, link: LINKS.GITHUB, label: "Github" },
-    { icon: FaDiscord, link: LINKS.DISCORD, label: "Discord" },
+    // { icon: FaDiscord, link: LINKS.DISCORD, label: "Discord" },
   ];
 
   return (
@@ -51,9 +51,9 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="flex flex-col gap-3 items-center"
           >
-            <h3 className="text-primary-text font-semibold text-sm uppercase tracking-wider mb-2">
+            {/* <h3 className="text-primary-text font-semibold text-sm uppercase tracking-wider mb-2">
               Navigation
-            </h3>
+            </h3> */}
             <div className="flex flex-col gap-2 items-center">
               {pages.map((item, index) => {
                 if (item.path === "/") return null;
@@ -118,7 +118,7 @@ const Footer: React.FC = () => {
           className="p-section-mobile xl:p-section-xl mt-8 pt-6 border-t border-primary-accent/20 bg-primary-accent/40 text-center"
         >
           <p className="text-primary-text/70 text-xs md:text-sm">
-            © 2024 Celina. All rights reserved. Built with React and Typescript.
+            Built with React and Typescript.
           </p>
         </motion.div>
     </footer>

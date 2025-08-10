@@ -1,5 +1,5 @@
 import React from "react";
-
+import { motion } from "framer-motion";
 import { ButtonProps } from "../../types/components/button";
 
 const Button: React.FC<ButtonProps> = ({
@@ -10,18 +10,23 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   variant = "primary",
 }) => {
-  const baseStyles = "px-4 py-2 font-semibold rounded 2xl:text-2xl";
+  const baseStyles =
+    "w-full font-semibold py-2 px-4 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none";
   const variantStyles = {
-    primary:
-      "text-primary-text bg-primary-accent",
-    light_primary: "text-black bg-primary-accent border-[1.5px] border-black",
-    dark_primary: "bg-blue-500 hover:bg-blue-700",
-    dark_secondary: "text-white bg-gray-500 hover:bg-gray-700",
+    primary: "bg-primary-accent text-primary-text hover:bg-secondary-accent",
+    light_primary:
+      "bg-primary-accent text-black border-[1.5px] border-black hover:bg-secondary-accent",
+    dark_primary: "bg-blue-500 hover:bg-blue-700 text-white",
+    dark_secondary: "bg-gray-500 hover:bg-gray-700 text-white",
   };
-  const disabledStyles = "bg-gray-400 cursor-not-allowed";
+  const disabledStyles = "opacity-50 cursor-not-allowed transform-none";
+
   return (
-    <div
-      className={`rounded ${variant === "primary" ? "bg-background " : ""} `}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5 }}
+      className=""
     >
       <button
         type={type}
@@ -29,12 +34,11 @@ const Button: React.FC<ButtonProps> = ({
         disabled={disabled}
         className={`${baseStyles} ${variantStyles[variant]} ${
           disabled ? disabledStyles : ""
-        } ${className} `}
+        } ${className}`}
       >
         {label}
-        {/* <div className="h-full w-full -z-10"></div> */}
       </button>
-    </div>
+    </motion.div>
   );
 };
 
