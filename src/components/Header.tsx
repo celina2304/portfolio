@@ -46,7 +46,7 @@ export default function Header() {
       (window.scrollY > headerHeight) ? "bg-background/50 backdrop-blur-sm shadow-sm" : ""
     }`}
     >
-      <nav className={`hidden h-auto sm:flex font-medium uppercase items-center justify-between md:px-4 md:py-2 2xl:p-8 transition-all duration-300 ease-in-out`}>
+      <nav className={`hidden h-auto sm:flex font-medium uppercase items-center justify-between sm:px-4 sm:py-2 2xl:p-8 transition-all duration-300 ease-in-out`}>
         <Link to="/" className="">
           <img
             loading="lazy"

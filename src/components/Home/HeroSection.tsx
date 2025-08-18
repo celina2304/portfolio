@@ -133,8 +133,9 @@ const HeroSection: React.FC<FunctionalComponentProps> = ({ id }) => {
               delay: 0.8,
               duration: 0.8,
             }} className="">
-              <Link to={LINKS.LINKEDIN} target="__blank"></Link>
-            <Button variant="secondary" label="Linkedin" />
+            <Link to={LINKS.LINKEDIN} target="__blank">
+              <Button variant="secondary" label="Linkedin" />
+            </Link>
           </motion.div>
         </div>
       </motion.div>

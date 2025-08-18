@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { ButtonProps } from "../../types/components/button";
 
 const Button: React.FC<ButtonProps> = ({
@@ -23,18 +22,14 @@ const Button: React.FC<ButtonProps> = ({
   const disabledStyles = "opacity-50 cursor-not-allowed transform-none";
 
   return (
-    <motion.button
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5 }}
+    <button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${baseStyles} ${variantStyles[variant]} ${disabled ? disabledStyles : ""
-        } ${className}`}
+      className={`${baseStyles} ${variantStyles[variant]} ${disabled ? disabledStyles : ""} ${className}`}
     >
       {label}
-    </motion.button>
+    </button>
   );
 };
 

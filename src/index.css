@@ -31,15 +31,16 @@ section{
   @apply font-light text-base 2xl:text-xl
 }
 
-.pdf-container .react-pdf__Page canvas {
+.react-pdf__Document .react-pdf__Page canvas {
+  /* width: min-content !important; */
   width: 100% !important;
   height: auto !important;
   aspect-ratio: attr(width) / attr(height);
 }
 
-@media screen and (min-width: 768px) {
-  .pdf-container .react-pdf__Page canvas {
-    width: 50% !important;
+@media screen and (min-width: 1040px) {
+  .react-pdf__Document {
+    width: 60% !important;
     height: auto !important;
     aspect-ratio: attr(width) / attr(height);
   } 
