@@ -6,8 +6,9 @@ import { useEffect, useRef } from "react";
 import useScrollTo from "../../hooks/useScrollTo";
 
 // types and constants
-import { PathProps, MobileNavProps } from "../../types/components/mobileNav";
+import { PathProps } from "../../types/components/mobileNav";
 import { LINKS } from "../../constants/links";
+import navigation from "../../constants/navigation";
 
 // ui components
 import Button from "./Button";
@@ -72,7 +73,7 @@ const Path: React.FC<PathProps> = (props) => (
   <motion.path strokeWidth="4" strokeLinecap="round" {...props} />
 );
 
-const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
+const MobileNav: React.FC = () => {
   const scrollTo = useScrollTo();
   const [isOpen, toggleOpen] = useCycle(false, true);
   const navRef = useRef<HTMLDivElement>(null);
@@ -94,7 +95,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
   const handleItemClick = (i: number) => {
     toggleOpen();
     const timer = setTimeout(() => {
-      scrollTo(pages[i].scroll || "");
+      scrollTo(navigation[i].sectionId || "");
     }, 800);
 
     return () => clearTimeout(timer);
@@ -117,7 +118,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
         className={`p-6 ${isOpen ? "pointer-events-auto" : "pointer-events-none"} absolute  flex flex-col gap-5 top-[50px] h-[100vh]`}
         variants={navigationVariants}
       >
-        {pages.map((i, pageIndex) => {
+        {navigation.map((i, pageIndex) => {
           return (
             <motion.li
               className="cursor-pointer "
@@ -130,7 +131,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
               <div
                 className={``}
               >
-                {i.title}
+                {i.sectionName}
               </div>
             </motion.li>
           );

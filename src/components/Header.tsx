@@ -109,7 +109,7 @@ export default function Header() {
           </Link>
         </motion.div>
       </nav>
-      <MobileNav pages={navigation || []} />
+      <MobileNav />
     </header>
   )
 }
