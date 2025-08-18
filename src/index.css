@@ -24,11 +24,25 @@ section{
 }
 
 .heading {
-  @apply font-medium uppercase text-2xl lg:text-3xl py-3 text-center;
+  @apply font-medium uppercase text-2xl lg:text-3xl py-5 text-center;
 }
 
 .paragraph {
-  @apply font-light text-base 2xl:text-2xl;
+  @apply font-light text-base 2xl:text-xl
+}
+
+.pdf-container .react-pdf__Page canvas {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: attr(width) / attr(height);
+}
+
+@media screen and (min-width: 768px) {
+  .pdf-container .react-pdf__Page canvas {
+    width: 50% !important;
+    height: auto !important;
+    aspect-ratio: attr(width) / attr(height);
+  } 
 }
 
 .underline-animation {

@@ -6,7 +6,7 @@ const AboutSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   return (
     <section
       id={id}
-      className="min-h-[50vh] grid items-center justify-center"
+      className="min-h-[50vh] relative 2xl:min-h-0 text-center"
     >
       <motion.h2 initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

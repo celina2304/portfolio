@@ -35,8 +35,7 @@ const ProjectSection: React.FC<FunctionalComponentProps> = ({ id }) => {
           Projects I've worked on
           <ArrowRightIcon className="h-11 fill-primary-accent  w-auto inline" />
         </motion.h2>
-        <br />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-3 gap-5">
           {projectsData.map((project, projectIndex) => {
             return (
               <Card
@@ -47,15 +46,15 @@ const ProjectSection: React.FC<FunctionalComponentProps> = ({ id }) => {
             );
           })}
         </div>
-        <div className="pt-10  flex items-center justify-center">
-          {/* <Button
+        {/* <div className="pt-10  flex items-center justify-center">
+          <Button
             onClick={() => {
               // navigate("/projects")
             }}
             type="button"
             label="View more"
-          /> */}
-        </div>
+          />
+        </div> */}
       </motion.div>
 
     </section>

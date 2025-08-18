@@ -1,8 +1,4 @@
-const sections = [
-    {
-        sectionName: "Hero",
-        sectionId: "hero",
-    },
+const navigation = [
     {
         sectionName: "About",
         sectionId: "about",
@@ -12,12 +8,8 @@ const sections = [
         sectionId: "projects",
     },
     {
-        sectionName: "Skills",
-        sectionId: "skills",
-    },
-    {
         sectionName: "Contact",
-        sectionId: "Contact",
+        sectionId: "contact",
     },
     {
         sectionName: "Resume",
@@ -25,4 +17,4 @@ const sections = [
     }
 ];
 
-export default sections;
+export default navigation;

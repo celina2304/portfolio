@@ -4,5 +4,5 @@ export interface ButtonProps {
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   className?: string;
-  variant?: "primary" | "light_primary" | "dark_primary" | "dark_secondary";
+  variant?: "primary" | "secondary" | "light_primary" | "dark_primary" | "dark_secondary";
 }

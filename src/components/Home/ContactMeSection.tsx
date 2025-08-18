@@ -8,10 +8,10 @@ import { useRef } from "react";
 import ContactForm from "../ui/ContactForm";
 
 const ContactMeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: contactRef,
     offset: ["start end", "end start"],
   });
 
@@ -19,13 +19,13 @@ const ContactMeSection: React.FC<FunctionalComponentProps> = ({ id }) => {
   const contactY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
 
   return (
-    <section id={id} className="relative overflow-x-clip">
+    <section ref={contactRef} id={id} className="relative overflow-x-clip">
       <motion.div initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }} className="z-20 relative" style={{
           y: contactY
         }}>
-        <h2 className="heading">CONTACT ME</h2> <br />
+        <h2 className="heading">CONTACT ME</h2>
         <ContactForm />
       </motion.div>
       <motion.img initial={{ opacity: 0, y: 20 }}

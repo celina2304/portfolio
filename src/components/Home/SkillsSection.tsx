@@ -28,7 +28,7 @@ const SkillsSection: React.FC<FunctionalComponentProps> = ({ id }) => {
         Skills I have
       </motion.h2>
       <br />
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-6 px-8">
+      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8 lg:gap-6 md:px-8">
         {skills.map((skill, index) => (
           <motion.div
             key={index}
@@ -46,8 +46,8 @@ const SkillsSection: React.FC<FunctionalComponentProps> = ({ id }) => {
             }}
             className="flex flex-col items-center"
           >
-            <img src={skill.icon} loading="lazy" alt={skill.name} className="w-16 h-16 object-contain" />
-            <p className="mt-2">{skill.name}</p>
+            <img src={skill.icon} loading="lazy" alt={skill.name} className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
+            <p className="mt-2 text-sm md:text-base">{skill.name}</p>
           </motion.div>
         ))}
       </div>

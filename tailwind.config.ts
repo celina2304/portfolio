@@ -28,7 +28,7 @@ const config: Config = {
       },
       boxShadow: {
         projectCard: "0px 0px 25px -3px #b0fe76",
-        main: "0px 16px 39px -5px #b8b8b8"
+        main: "0px 24px 39px -20px #7A7A7A"
       },
       screens: {
         xs: "420px"

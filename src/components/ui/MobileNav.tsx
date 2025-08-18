@@ -2,12 +2,8 @@ import { Link } from "react-router-dom";
 import { motion, useCycle } from "framer-motion";
 import { useEffect, useRef } from "react";
 
-// redux
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-
 // hooks 
-import useScrollToSection from "../../hooks/useScrollToSection";
+import useScrollTo from "../../hooks/useScrollTo";
 
 // types and constants
 import { PathProps, MobileNavProps } from "../../types/components/mobileNav";
@@ -24,7 +20,6 @@ const navigationVariants = {
     },
   },
   closed: {
-    // backgroundColor: "transparent",
     transition: {
       staggerChildren: 0.05,
       staggerDirection: -1,
@@ -41,14 +36,14 @@ const sidebarVariants = {
     transition: {
       type: "spring",
       stiffness: 20,
-      // restDelta: 2,
+      restDelta: 2,
     },
   }),
   closed: {
     clipPath: "circle(25px at 40px 40px)",
     backgroundColor: "var(--primary-accent)",
     transition: {
-      // delay: 0.5,
+      delay: 0.5,
       type: "spring",
       stiffness: 400,
       damping: 40,
@@ -78,12 +73,8 @@ const Path: React.FC<PathProps> = (props) => (
 );
 
 const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
-  const scrollToSection = useScrollToSection();
-  const { innerHeight } = useSelector((state: RootState) => state.dimensions);
-  // const scrollY = window.scrollY;
+  const scrollTo = useScrollTo();
   const [isOpen, toggleOpen] = useCycle(false, true);
-
-  // Handle click outside to close navigation
   const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -103,7 +94,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
   const handleItemClick = (i: number) => {
     toggleOpen();
     const timer = setTimeout(() => {
-      scrollToSection(pages[i].scroll || "");
+      scrollTo(pages[i].scroll || "");
     }, 800);
 
     return () => clearTimeout(timer);
@@ -112,19 +103,18 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
   return (
     <motion.nav
       ref={navRef}
-      className={`absolute md:hidden inset-0 w-[250px] h-[80px] ${isOpen? "pointer-events-auto": "pointer-events-none"}`}
+      className={`absolute sm:hidden inset-0 w-[250px] h-[80px]`}
       initial={false}
       animate={isOpen ? "open" : "closed"}
-      custom={innerHeight}
+      custom={window.innerHeight}
       data-mobile-nav
     >
-      {/* Background with clipPath */}
       <motion.div
         className={`absolute inset-0 w-48 h-[100vh] border-r-[1.5px] border-primary-text`}
         variants={sidebarVariants}
       />
       <motion.ul
-        className={`p-6 absolute  flex flex-col gap-5 top-[50px] w-[250px] h-[100vh]`}
+        className={`p-6 ${isOpen ? "pointer-events-auto" : "pointer-events-none"} absolute  flex flex-col gap-5 top-[50px] h-[100vh]`}
         variants={navigationVariants}
       >
         {pages.map((i, pageIndex) => {
@@ -150,9 +140,8 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
           variants={menuItemVariants}
           key={`menu-item-mobile-head-github-button`}
         >
-          <Link to={LINKS.GITHUB} className="flex items-center ">
+          <Link to={LINKS.GITHUB} target="__blank" className="flex items-center ">
             <Button
-              onClick={() => { }}
               type="button"
               variant="primary"
               label="GITHUB ->"
@@ -161,8 +150,12 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
         </motion.li>
       </motion.ul>
       <button
-        onClick={() => toggleOpen()}
-        className="absolute cursor-pointer left-[40px] top-[40px] -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] rounded-full flex items-center justify-center"
+        onClick={() => {
+          toggleOpen();
+          console.log("clicking");
+
+        }}
+        className="absolute z-50 cursor-pointer left-[40px] top-[40px] -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] rounded-full flex items-center justify-center"
       >
         <svg
           width="23"
@@ -177,7 +170,6 @@ const MobileNav: React.FC<MobileNavProps> = ({ pages }) => {
               },
               open: { d: "M 3 16.5 L 17 2.5" },
             }}
-            // stroke={colorVal ? "var(--color-primary-text)" : "var(--color-primary-accent)"}
             stroke="var(--primary-text)"
           />
           <Path

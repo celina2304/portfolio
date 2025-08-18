@@ -142,7 +142,7 @@ const ContactForm: React.FC = () => {
           type="submit"
           disabled={isSubmitting}
           variant="primary"
-          className="py-4 px-6 mt-4" // matches your old padding and margin
+          className="py-4 px-6 mt-4 w-full" // matches your old padding and margin
           label={
             isSubmitting ? (
               <div className="flex items-center justify-center space-x-2">

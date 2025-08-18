@@ -1,9 +1,5 @@
 import { pdfjs, Document, Page } from "react-pdf";
 
-// redux
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-
 // types
 import { PdfProps } from "../../types/components/resume";
 
@@ -13,22 +9,14 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 const PdfViewer: React.FC<PdfProps> = (props) => {
-  const innerWidth = useSelector(
-    (state: RootState) => state.dimensions.innerWidth
-  );
   return (
-    <>
-      {innerWidth && (
-        <Document className={""} file={props.pdf}>
-          <Page
-            width={innerWidth <= 450 ? innerWidth * 0.7 : 450}
-            renderAnnotationLayer={false}
-            renderTextLayer={false}
-            pageNumber={1}
-          />
-        </Document>
-      )}
-    </>
+    <Document className={"max-w-min pdf-container"} file={props.pdf}>
+      <Page
+        renderAnnotationLayer={false}
+        renderTextLayer={false}
+        pageNumber={1}
+      />
+    </Document>
   );
 };
 

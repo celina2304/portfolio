@@ -1,5 +1,5 @@
-import pages from "../constants/pages";
-import useScrollToSection from "../hooks/useScrollToSection";
+import navigation from "../constants/navigation";
+import useScrollTo from "../hooks/useScrollTo";
 import { motion } from "framer-motion";
 
 //images
@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 
 const Footer: React.FC = () => {
-  const scrollToSection = useScrollToSection();
+  const scrollTo = useScrollTo();
 
   const socialLinks = [
     { icon: FaEnvelope, link: "mailto:celina23042001@gmail.com", label: "Email" },
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
               <img
                 loading="lazy"
                 src={logoBlack}
-                className="h-16 md:h-20 2xl:h-[5vw]"
+                className="h-16 md:h-20 2xl:h-[3vw]"
                 alt="Portfolio Logo"
               />
             </div>
@@ -55,18 +55,17 @@ const Footer: React.FC = () => {
               Navigation
             </h3> */}
             <div className="flex flex-col gap-2 items-center">
-              {pages.map((item, index) => {
-                if (item.path === "/") return null;
+              {navigation.map((item, index) => {
                 return (
                   <motion.div
-                    key={`${item.title}footer-item`}
+                    key={`${item.sectionName}footer-item`}
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: 0.1 + index * 0.05 }}
-                    onClick={() => scrollToSection(item.scroll || "")}
+                    onClick={() => scrollTo(item.sectionId || "")}
                     className="cursor-pointer text-xs 2xl:text-lg relative underline-animation underline-primary-accent text-primary-text font-medium hover:text-primary-accent transition-colors duration-300"
                   >
-                    {item.title}
+                    {item.sectionName}
                   </motion.div>
                 );
               })}

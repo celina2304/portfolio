@@ -25,7 +25,7 @@ export const Card: React.FC<projectCardProps> = (props) => {
           mass: 0.2
         }
       }}
-      className="h-full"
+      className="h-full flex items-center justify-center"
     >
       <div className="cursor-pointer rounded-lg duration-200 ease-in-out hover:shadow-projectCard relative h-full max-w-sm 2xl:max-w-screen-2xl border-[1.5px] border-primary-text flex flex-col"
       onClick={() => {
@@ -35,7 +35,6 @@ export const Card: React.FC<projectCardProps> = (props) => {
           loading="lazy"
           className="w-full h-40 object-cover border-b-[1.5px] border-primary-text rounded-t-lg flex-shrink-0"
           src={projectDetails.images[0]}
-          // src="https://tailwindcss.com/img/card-top.jpg"
           alt="Sunset in the mountains"
         />
         <div className="p-2 flex flex-col flex-1">
@@ -45,7 +44,7 @@ export const Card: React.FC<projectCardProps> = (props) => {
             {projectDetails.heading}
           </h4>
           <p
-            className={`relative z-20 text-xs 2xl:text-2xl flex-1`}
+            className={`relative z-20 text-xs 2xl:text-base flex-1`}
           >
             {projectDetails.description}
           </p>
@@ -54,7 +53,7 @@ export const Card: React.FC<projectCardProps> = (props) => {
           {projectDetails.skills.map((skill, skillIndex) => (
             <span
               key={`project-card${index}-skill${skillIndex}`}
-              className="border-primary-accent border-2 rounded-md px-1 py-[0.05rem] text-xs 2xl:text-3xl"
+              className="border-primary-accent border-2 rounded-md px-1 py-[0.05rem] text-xs 2xl:text-base"
             >
               {skill}
             </span>

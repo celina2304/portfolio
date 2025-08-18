@@ -17,11 +17,8 @@ export interface Skill {
 }
 
 export interface Page {
-    path: string;
-    title: string;
-    description: string;
-    scroll?: string;
-    sections: SectionObj[];
+    sectionName: string;
+    sectionId: string;
 }
 
 export interface FunctionalComponentProps {
